@@ -1,0 +1,109 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Nombre+de+la+Fuente');
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+
+.login-container {
+    width: 300px;
+    margin: 100px auto;
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 5px;
+    text-align: center;
+    font-family: "Releway"; 
+    color: #8DCB9E;
+    font-size: 20px;
+}
+
+h1{
+    text-align: center;
+    font-family: "Releway"; 
+    color: #8DCB9E;
+    font-size: 20px;
+   
+}
+
+h2 {
+    text-align: center;
+    font-family: "jomhuria", sans-serif; 
+    color: #8DCB9E;
+    text-shadow: 1px 1px 0 #000 ; 
+    font-size: 40px ;
+   
+
+}
+
+input[type="text"],
+input[type="password"],
+button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+
+ 
+
+button {
+    background-color: #8DCB9E;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: green;
+}
+
+.forgot-password {
+    text-align: center;
+    margin-top: 10px;
+    text-align: right;
+    font-family: jomhuria; 
+    list-style: none ;
+    color: green; 
+    text-decoration: none;
+}
+
+.forgot-password a {
+    text-align: end;
+    color:green ;
+    text-decoration: none;
+}
+.username::placeholder {
+    color: #8DCB9E; /* Verde */
+}
+
+.password::placeholder{
+    color: #8DCB9E; /* Verde */
+
+}
+
+.logo-container img {
+    width: 100px; /* Ajusta el ancho de acuerdo a tus necesidades */
+    height: auto; /* Esto mantiene la proporción de la imagen */
+}
+
+.register-link {
+    color: #8DCB9E;
+}
+
+.register-link a {
+    color: green;
+    text-decoration: none;
+}
+
+
+img {
+    display: block; /* Asegurar que la imagen sea un bloque */
+    margin: 20px auto ; /* Centrar horizontalmente */
+    text-align: center; /* Centrar contenido horizontalmente */
+
+}

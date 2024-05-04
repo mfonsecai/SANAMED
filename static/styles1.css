@@ -1,0 +1,86 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Nombre+de+la+Fuente');
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #dad7d7;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 300px;
+    margin: 100px auto;
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 5px;
+    text-align: center;
+    font-family: "Releway"; 
+    color: #8DCB9E;
+    font-size: 20px;
+}
+
+h2 {
+    text-align: center;
+    text-shadow: 1px 1px 0 #000 ; 
+
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #8DCB9E;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: green;
+}
+
+p {
+    text-align: center;
+}
+
+p a {
+    color: green;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+
+.register-link {
+    color: #8DCB9E;
+}
+
+.register-link a {
+    color: green;
+    text-decoration: none;
+}
