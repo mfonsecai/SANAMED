@@ -8,6 +8,7 @@ app.config["MYSQL_USER"]="root"
 app.config["MYSQL_PASSWORD"]=""
 app.config["MYSQL_DB"]="sanamed"
 mysql= MySQL(app)
+#RRRR
 
 @app.route('/')
 def index():
