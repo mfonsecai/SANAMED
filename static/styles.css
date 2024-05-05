@@ -15,7 +15,7 @@ body {
     text-align: center;
     font-family: "Releway"; 
     color: #8DCB9E;
-    font-size: 20px;
+    font-size: 25px;
 }
 
 h1{
@@ -64,8 +64,7 @@ button:hover {
 
 .forgot-password {
     text-align: center;
-    margin-top: 10px;
-  
+    margin-top: 20px;
     font-family: jomhuria; 
     list-style: none ;
     color: green; 
