@@ -13,16 +13,18 @@
 
         <img src="{{ url_for('static', filename='salud-mental1.jpg') }}" alt="Descripción de la imagen">
 
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+
         <form action="/login" method="POST">
             <input type="text" class="username" name="correo" placeholder="Correo Electrónico" required>
             <input type="password" class="password" name="contrasena" placeholder="Contraseña" required>
             <div class="forgot-password">
                 <a href="SOFTWARE II/templates/register.html">¿Olvidaste tu contraseña?</a>
             </div>
-            <form action="{{ url_for('user_home') }}" method="post">
-                <button type="submit">Inicio Sesión</button>
-            </form>
-                    </form>
+            <button type="submit">Inicio Sesión</button>
+        </form>
 
         <!-- Agregar enlace para ir a la página de registro -->
         <div class="register-link">

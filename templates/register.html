@@ -41,13 +41,14 @@
                 <label for="contrasena">Contraseña:</label>
                 <input type="password" id="contrasena" name="contrasena" required>
             </div>
+            {% if error %}
+            <p class="error">{{ error }}</p>
+            {% endif %}
             <button type="submit" class="btn">Registrar</button>
         </form>
         <div class="register-link">
             ¿Ya tienes una cuenta? <a href="{{ url_for('index') }}">Iniciar sesión</a>
         </div>
-      
-
     </div>
 </body>
 </html>
