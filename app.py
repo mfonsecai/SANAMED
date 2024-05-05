@@ -1,7 +1,9 @@
 import re  # Agrega esta línea al principio del archivo para importar el módulo de expresiones regulares
+import datetime
 
 from flask import Flask, render_template, request, session, redirect, url_for
 from flask_mysqldb import MySQL
+
 
 app = Flask(__name__, template_folder="templates")
 
@@ -11,6 +13,12 @@ app.config["MYSQL_PASSWORD"] = ""
 app.config["MYSQL_DB"] = "sanamed"
 mysql = MySQL(app)
 
+def get_id_usuario():
+    # Obtener el ID del usuario desde la sesión
+    if 'id_usuario' in session:
+        return session['id_usuario']
+    else:
+        return None
 
 def validate_password(password):
     # Validar que la contraseña tenga al menos 8 caracteres, una mayúscula y un carácter especial
@@ -42,7 +50,7 @@ def login():
             session['logged_in'] = True
             return redirect(url_for('user_home'))
         else:
-            return render_template('index.html', error="Credenciales incorrectas")
+            return render_template('index.html', error="Usuario o contraseña incorrectos")
 
     return render_template('index.html')
 
@@ -87,6 +95,27 @@ def user_home():
 @app.route('/puzzle')
 def puzzle():
     return render_template('puzzle.html')
+
+@app.route('/register_emotion', methods=["POST"])
+def register_emotion():
+    if request.method == 'POST':
+        # Obtener el ID del usuario desde la sesión
+        user_id = get_id_usuario()
+        if user_id:
+            emotion = request.form['emotion']
+            date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+            # Insertar la emoción en la base de datos
+            cur = mysql.connection.cursor()
+            cur.execute("INSERT INTO Emociones (id_usuario, emocion, fecha) VALUES (%s, %s, %s)",
+                        (user_id, emotion, date))
+            mysql.connection.commit()
+            cur.close()
+
+            return redirect(url_for('user_home'))
+        else:
+            return redirect(url_for('index'))
+
 
 
 if __name__ == '__main__':
