@@ -2,6 +2,7 @@ import re
 from datetime import datetime
 from flask import Flask, render_template, request, session, redirect, url_for
 from flask_mysqldb import MySQL
+import random
 
 # Configurar la aplicación Flask
 app = Flask(__name__, template_folder="templates")
@@ -28,6 +29,18 @@ def validate_password(password):
 def obtener_id_usuario_actual():
     if 'id_usuario' in session:
         return session['id_usuario']
+    else:
+        return None
+
+# Función para generar un ID de profesional aleatorio
+def generar_id_profesional_aleatorio():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT id_profesional FROM Profesionales")
+    profesionales = cur.fetchall()
+    cur.close()
+    if profesionales:
+        id_profesional = random.choice(profesionales)[0]
+        return id_profesional
     else:
         return None
 
@@ -81,8 +94,6 @@ def registro_emocion():
     else:
         return redirect(url_for('index'))
 
-
-
 @app.route('/signup', methods=["GET", 'POST'])
 def register():
     if request.method == 'POST':
@@ -110,7 +121,6 @@ def register():
 
     return render_template('register.html')
 
-
 @app.route('/user_home')
 def user_home():
     if 'logged_in' in session and session['logged_in']:
@@ -118,9 +128,8 @@ def user_home():
         return render_template('user_home.html')
     else:
         return redirect(url_for('index'))
-    
 
-
+<<<<<<< HEAD
 @app.route('/games')
 def games():
     return render_template('games.html')
@@ -132,7 +141,69 @@ def rompecabezas():
 @app.route('/laberinto')
 def laberinto():
     return render_template('laberinto.html')
+=======
+@app.route('/puzzle')
+def puzzle():
+    return render_template('puzzle.html')
+# Función para obtener un ID de profesional aleatorio
+# Función para obtener profesionales disponibles
+def obtener_profesionales_disponibles():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT id_profesional, nombre, especialidad FROM Profesionales")
+    profesionales = cur.fetchall()
+    cur.close()
+    return profesionales
+>>>>>>> 0f3562495941685d33a05cbbafeb0b1d8e6fd418
 
+@app.route('/agendar_cita', methods=["GET", "POST"])
+def agendar_cita():
+    if 'logged_in' in session and session['logged_in']:
+        if request.method == "POST":
+            fecha = request.form['fecha']
+            hora = request.form['hora']
+            motivo = request.form['motivo']
+            id_usuario = session['id_usuario']
+
+            cur = mysql.connection.cursor()
+            cur.execute("SELECT * FROM Consultas WHERE fecha_consulta = %s AND hora_consulta = %s", (fecha, hora))
+            cita_existente = cur.fetchone()
+            cur.close()
+
+            if cita_existente:
+                error = "Ya hay una cita programada para esa fecha y hora."
+                return render_template('agendar_cita.html', error=error, profesionales=obtener_profesionales_disponibles())
+            else:
+                hora_seleccionada = datetime.strptime(hora, '%H:%M').time()
+                hora_inicio = datetime.strptime('08:00', '%H:%M').time()
+                hora_fin = datetime.strptime('17:00', '%H:%M').time()
+                
+                if hora_seleccionada < hora_inicio or hora_seleccionada > hora_fin:
+                    error = "La hora seleccionada está fuera del rango permitido (8:00 - 17:00)."
+                    return render_template('agendar_cita.html', error=error, profesionales=obtener_profesionales_disponibles())
+
+                id_profesional = request.form['profesional']
+
+                cur = mysql.connection.cursor()
+                try:
+                    cur.execute("INSERT INTO Consultas (id_usuario, id_profesional, fecha_consulta, hora_consulta, motivo) VALUES (%s, %s, %s, %s, %s)",
+                                (id_usuario, id_profesional, fecha, hora, motivo))
+                    mysql.connection.commit()
+
+                    cur.execute("INSERT INTO Profesionales_Usuarios (id_profesional, id_usuario) VALUES (%s, %s)",
+                                (id_profesional, id_usuario))
+                    mysql.connection.commit()
+                except Exception as e:
+                    mysql.connection.rollback()
+                    error = "Error al programar la cita: " + str(e)
+                    return render_template('agendar_cita.html', error=error, profesionales=obtener_profesionales_disponibles())
+                finally:
+                    cur.close()
+
+                return redirect(url_for('user_home'))
+    else:
+        return redirect(url_for('index'))
+
+    return render_template('agendar_cita.html', profesionales=obtener_profesionales_disponibles())
 
 if __name__ == '__main__':
     app.secret_key = "sanamed"
