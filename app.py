@@ -121,9 +121,17 @@ def user_home():
     
 
 
-@app.route('/puzzle')
-def puzzle():
-    return render_template('puzzle.html')
+@app.route('/games')
+def games():
+    return render_template('games.html')
+
+@app.route('/rompecabezas')
+def rompecabezas():
+    return render_template('rompecabezas.html')
+
+@app.route('/laberinto')
+def laberinto():
+    return render_template('laberinto.html')
 
 
 if __name__ == '__main__':
