@@ -129,19 +129,6 @@ def user_home():
     else:
         return redirect(url_for('index'))
 
-<<<<<<< HEAD
-@app.route('/games')
-def games():
-    return render_template('games.html')
-
-@app.route('/rompecabezas')
-def rompecabezas():
-    return render_template('rompecabezas.html')
-
-@app.route('/laberinto')
-def laberinto():
-    return render_template('laberinto.html')
-=======
 @app.route('/puzzle')
 def puzzle():
     return render_template('puzzle.html')
@@ -153,7 +140,6 @@ def obtener_profesionales_disponibles():
     profesionales = cur.fetchall()
     cur.close()
     return profesionales
->>>>>>> 0f3562495941685d33a05cbbafeb0b1d8e6fd418
 
 @app.route('/agendar_cita', methods=["GET", "POST"])
 def agendar_cita():
