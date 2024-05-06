@@ -129,9 +129,19 @@ def user_home():
     else:
         return redirect(url_for('index'))
 
-@app.route('/puzzle')
-def puzzle():
-    return render_template('puzzle.html')
+@app.route('/games')
+def games():
+    return render_template('games.html')
+
+@app.route('/rompecabezas')
+def rompecabezas():
+    return render_template('rompecabezas.html')
+
+@app.route('/laberinto')
+def laberinto():
+    return render_template('laberinto.html')
+
+
 # Función para obtener un ID de profesional aleatorio
 # Función para obtener profesionales disponibles
 def obtener_profesionales_disponibles():

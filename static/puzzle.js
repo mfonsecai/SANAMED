@@ -1,142 +1,104 @@
-//Initial References
-const moves = document.getElementById("moves");
-const container = document.querySelector(".container");
-const startButton = document.getElementById("start-button");
-const coverScreen = document.querySelector(".cover-screen");
-const result = document.getElementById("result");
-let currentElement = "";
-let movesCount,
-  imagesArr = [];
-const isTouchDevice = () => {
-  try {
-    //We try to create TouchEvent (it would fail for desktops ad throw error)
-    document.createEvent("TouchEvent");
-    return true;
-  } catch (e) {
-    return false;
-  }
-};
-//Random number for image
-const randomNumber = () => Math.floor(Math.random() * 8) + 1;
+const GameDifficulty=[20,50,70];
+class Game{
+    difficulty;//difficulty based on GameDifficulty array
+    cols=3;//how many colomns
+    rows=3;//how many rows
+    count;//cols*rows
+    blocks;//the html elements with className="puzzle_block"
+    emptyBlockCoords=[2,2];//the coordinates of the empty block
+    indexes=[];//keeps track of the order of the blocks
 
-//Get row and column value from data-position
-const getCoords = (element) => {
-  const [row, col] = element.getAttribute("data-position").split("_");
-  return [parseInt(row), parseInt(col)];
-};
-
-//row1, col1 are image co-ordinates while row2 amd col2 are blank image co-ordinates
-const checkAdjacent = (row1, row2, col1, col2) => {
-  if (row1 == row2) {
-    //left/right
-    if (col2 == col1 - 1 || col2 == col1 + 1) {
-      return true;
+    constructor(difficultyLevel=1){
+        this.difficulty=GameDifficulty[difficultyLevel-1];
+        this.count=this.cols*this.rows;
+        this.blocks=document.getElementsByClassName("puzzle_block");//grab the blocks
+        this.init();
     }
-  } else if (col1 == col2) {
-    //up/down
-    if (row2 == row1 - 1 || row2 == row1 + 1) {
-      return true;
+
+    init(){//position each block in its proper position
+        for(let y=0;y<this.rows;y++){
+            for(let x=0;x<this.cols;x++){
+                let blockIdx=x+y*this.cols;
+                if(blockIdx+1>=this.count)break;
+                let block=this.blocks[blockIdx];
+                this.positionBlockAtCoord(blockIdx,x,y);
+                block.addEventListener('click',(e)=>this.onClickOnBlock(blockIdx));
+                this.indexes.push(blockIdx);
+            }
+        }
+        this.indexes.push(this.count-1);
+        this.randomize(this.difficulty);
     }
-  }
-  return false;
-};
 
-//Fill array with random value for images
-const randomImages = () => {
-  while (imagesArr.length < 8) {
-    let randomVal = randomNumber();
-    if (!imagesArr.includes(randomVal)) {
-      imagesArr.push(randomVal);
+    randomize(iterationCount){//move a random block (x iterationCount)
+        for(let i=0;i<iterationCount;i++){
+            let randomBlockIdx=Math.floor(Math.random()*(this.count-1));
+            let moved=this.moveBlock(randomBlockIdx);
+            if(!moved)i--;
+        }
     }
-  }
-  imagesArr.push(9);
-};
 
-//Generate Grid
-const gridGenerator = () => {
-  let count = 0;
-  for (let i = 0; i < 3; i++) {
-    for (let j = 0; j < 3; j++) {
-      let div = document.createElement("div");
-      div.setAttribute("data-position", `${i}_${j}`);
-      div.addEventListener("click", selectImage);
-      div.classList.add("image-container");
-      div.innerHTML = `<img src="{{ url_for('static', filename='image_part_01"${
-        imagesArr[count]
-      }.png" class="image ${
-        imagesArr[count] == 9 ? "target" : ""
-      }" data-index="${imagesArr[count]}"/>`;
-      count += 1;
-      container.appendChild(div);
+    moveBlock(blockIdx){//moves a block and return true if the block has moved
+        let block=this.blocks[blockIdx];
+        let blockCoords=this.canMoveBlock(block);
+        if(blockCoords!=null){
+            this.positionBlockAtCoord(blockIdx,this.emptyBlockCoords[0],this.emptyBlockCoords[1]);
+            this.indexes[this.emptyBlockCoords[0]+this.emptyBlockCoords[1]*this.cols]=this.indexes[blockCoords[0]+blockCoords[1]*this.cols];
+            this.emptyBlockCoords[0]=blockCoords[0];
+            this.emptyBlockCoords[1]=blockCoords[1];
+            return true;
+        }
+        return false;
     }
-  }
-};
-
-//Click the image
-const selectImage = (e) => {
-  e.preventDefault();
-  //Set currentElement
-  currentElement = e.target;
-  //target(blank image)
-  let targetElement = document.querySelector(".target");
-  let currentParent = currentElement.parentElement;
-  let targetParent = targetElement.parentElement;
-
-  //get row and col values for both elements
-  const [row1, col1] = getCoords(currentParent);
-  const [row2, col2] = getCoords(targetParent);
-
-  if (checkAdjacent(row1, row2, col1, col2)) {
-    //Swap
-    currentElement.remove();
-    targetElement.remove();
-    //Get image index(to be used later for manipulating array)
-    let currentIndex = parseInt(currentElement.getAttribute("data-index"));
-    let targetIndex = parseInt(targetElement.getAttribute("data-index"));
-    //Swap Index
-    currentElement.setAttribute("data-index", targetIndex);
-    targetElement.setAttribute("data-index", currentIndex);
-    //Swap Images
-    currentParent.appendChild(targetElement);
-    targetParent.appendChild(currentElement);
-    //Array swaps
-    let currentArrIndex = imagesArr.indexOf(currentIndex);
-    let targetArrIndex = imagesArr.indexOf(targetIndex);
-    [imagesArr[currentArrIndex], imagesArr[targetArrIndex]] = [
-      imagesArr[targetArrIndex],
-      imagesArr[currentArrIndex],
-    ];
-
-    //Win condition
-    if (imagesArr.join("") == "123456789") {
-      setTimeout(() => {
-        //When games ends display the cover screen again
-        coverScreen.classList.remove("hide");
-        container.classList.add("hide");
-        result.innerText = `Total Moves: ${movesCount}`;
-        startButton.innerText = "RestartGame";
-      }, 1000);
+    canMoveBlock(block){//return the block coordinates if he can move else return null
+        let blockPos=[parseInt(block.style.left),parseInt(block.style.top)];
+        let blockWidth=block.clientWidth;
+        let blockCoords=[blockPos[0]/blockWidth,blockPos[1]/blockWidth];
+        let diff=[Math.abs(blockCoords[0]-this.emptyBlockCoords[0]),Math.abs(blockCoords[1]-this.emptyBlockCoords[1])];
+        let canMove=(diff[0]==1&&diff[1]==0)||(diff[0]==0&&diff[1]==1);
+        if(canMove)return blockCoords;
+        else return null;
     }
-    //Increment a display move
-    movesCount += 1;
-    moves.innerText = `Moves: ${movesCount}`;
-  }
-};
 
-//Start button click should display the container
-startButton.addEventListener("click", () => {
-  container.classList.remove("hide");
-  coverScreen.classList.add("hide");
-  container.innerHTML = "";
-  imagesArr = [];
-  randomImages();
-  gridGenerator();
-  movesCount = 0;
-  moves.innerText = `Moves: ${movesCount}`;
+    positionBlockAtCoord(blockIdx,x,y){//position the block at a certain coordinates
+        let block=this.blocks[blockIdx];
+        block.style.left=(x*block.clientWidth)+"px";
+        block.style.top=(y*block.clientWidth)+"px";
+    }
+
+    onClickOnBlock(blockIdx){//try move block and check if puzzle was solved
+        if(this.moveBlock(blockIdx)){
+            if(this.checkPuzzleSolved()){
+                setTimeout(()=>alert("Puzzle Solved!!"),600);
+            }
+        }
+    }
+
+    checkPuzzleSolved(){//return if puzzle was solved
+        for(let i=0;i<this.indexes.length;i++){
+            //console.log(this.indexes[i],i);
+            if(i==this.emptyBlockCoords[0]+this.emptyBlockCoords[1]*this.cols)continue;
+            if(this.indexes[i]!=i)return false;
+        }
+        return true;
+    }
+
+    setDifficulty(difficultyLevel){//set difficulty
+        this.difficulty=GameDifficulty[difficultyLevel-1];
+        this.randomize(this.difficulty);
+    }
+
+}
+
+var game=new Game(1);//instantiate a new Game
+
+
+//taking care of the difficulty buttons
+var difficulty_buttons=Array.from(document.getElementsByClassName("difficulty_button"));
+difficulty_buttons.forEach((elem,idx)=>{
+    elem.addEventListener('click',(e)=>{
+        difficulty_buttons[GameDifficulty.indexOf(game.difficulty)].classList.remove("active");
+        elem.classList.add("active");
+        game.setDifficulty(idx+1);
+    });
 });
-
-//Display start screen first
-window.onload = () => {
-  coverScreen.classList.remove("hide");
-  container.classList.add("hide");
-};
