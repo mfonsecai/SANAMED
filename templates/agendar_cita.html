@@ -1,36 +1,50 @@
-<form action="/agendar_cita" method="POST">
-    <label for="fecha">Fecha:</label>
-    <input type="date" id="fecha" name="fecha" required><br><br>
-    
-    <label for="hora">Hora:</label>
-    <select id="hora" name="hora" required>
-        <option value="">Selecciona una hora</option>
-        <option value="08:00 AM">08:00 AM</option>
-        <option value="09:00 AM">09:00 AM</option>
-        <option value="10:00 AM">10:00 AM</option>
-        <option value="11:00 AM">11:00 AM</option>
-        <option value="12:00 PM">12:00 PM</option>
-        <option value="01:00 PM">01:00 PM</option>
-        <option value="02:00 PM">02:00 PM</option>
-        <option value="03:00 PM">03:00 PM</option>
-        <option value="04:00 PM">04:00 PM</option>
-        <option value="05:00 PM">05:00 PM</option>
-    </select><br><br>
-    
-    {% if error %}
-    <p style="color: red;">{{ error }}</p>
-    {% endif %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style7.css') }}">
+    <title>Sanamed - Software de Salud Mental</title>
+</head>
+<body>
 
+    <form action="/agendar_cita" method="POST" class="appointment-form">
+        <label for="fecha" class="form-label">Fecha:</label>
+        <input type="date" id="fecha" name="fecha" required class="form-input"><br><br>
+        
+        <label for="hora" class="form-label">Hora:</label>
+        <select id="hora" name="hora" required class="form-select">
+            <option value="" disabled selected>Selecciona una hora</option>
+            <option value="08:00 AM">08:00 AM</option>
+            <option value="09:00 AM">09:00 AM</option>
+            <option value="10:00 AM">10:00 AM</option>
+            <option value="11:00 AM">11:00 AM</option>
+            <option value="12:00 PM">12:00 PM</option>
+            <option value="01:00 PM">01:00 PM</option>
+            <option value="02:00 PM">02:00 PM</option>
+            <option value="03:00 PM">03:00 PM</option>
+            <option value="04:00 PM">04:00 PM</option>
+            <option value="05:00 PM">05:00 PM</option>
+        </select><br><br>
+        
+        {% if error %}
+        <p style="color: red;" class="form-error">{{ error }}</p>
+        {% endif %}
     
-    <label for="motivo">Motivo:</label><br>
-    <textarea id="motivo" name="motivo" rows="4" cols="50" required></textarea><br><br>
+        
+        <label for="motivo" class="form-label">Motivo:</label><br>
+        <textarea id="motivo" name="motivo" rows="4" cols="50" required class="form-textarea"></textarea><br><br>
+        
+        <label for="profesional" class="form-label">Profesional:</label><br>
+        <select id="profesional" name="profesional" class="form-select">
+            {% for profesional in profesionales %}
+                <option value="{{ profesional[0] }}">{{ profesional[1] }} - {{ profesional[2] }}</option>
+            {% endfor %}
+        </select><br><br>
+        
+        <input type="submit" value="Agendar Cita" class="form-submit">
+    </form>
     
-    <label for="profesional">Profesional:</label><br>
-    <select id="profesional" name="profesional">
-        {% for profesional in profesionales %}
-            <option value="{{ profesional[0] }}">{{ profesional[1] }} - {{ profesional[2] }}</option>
-        {% endfor %}
-    </select><br><br>
-    
-    <input type="submit" value="Agendar Cita">
 </form>
+</body>
+</html>

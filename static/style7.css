@@ -1,0 +1,25 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+
+.appointment-form {
+    /* Estilos generales para el formulario */
+    /* Por ejemplo: */
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+.form-label {
+    /* Estilos para las etiquetas */
+    /* Por ejemplo: */
+    font-weight: bold;
+}
+
+.form-input,
+.form-select,
+.form-textarea   {} /* Estilos para los inputs, selects y textarea
