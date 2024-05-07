@@ -1,4 +1,17 @@
 
+
+.container {
+    width: 300px;
+    margin: 100px auto;
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 5px;
+    text-align: center;
+    font-family: "Releway"; 
+    color: #8DCB9E;
+    font-size: 25px;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
@@ -19,6 +32,12 @@ body {
     /* Por ejemplo: */
     font-weight: bold;
 }
+
+.form-label1 {
+margin: 20px;
+
+}
+
 
 .form-input,
 .form-select,

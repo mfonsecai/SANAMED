@@ -8,6 +8,8 @@
 </head>
 <body>
 
+    
+    <div class=" container"> 
     <form action="/agendar_cita" method="POST" class="appointment-form">
         <label for="fecha" class="form-label">Fecha:</label>
         <input type="date" id="fecha" name="fecha" required class="form-input"><br><br>
@@ -32,7 +34,7 @@
         {% endif %}
     
         
-        <label for="motivo" class="form-label">Motivo:</label><br>
+        <label for="motivo" class="form-label1">Motivo:</label><br>
         <textarea id="motivo" name="motivo" rows="4" cols="50" required class="form-textarea"></textarea><br><br>
         
         <label for="profesional" class="form-label">Profesional:</label><br>
@@ -44,6 +46,7 @@
         
         <input type="submit" value="Agendar Cita" class="form-submit">
     </form>
+</div>
     
 </form>
 </body>
