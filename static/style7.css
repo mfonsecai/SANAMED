@@ -54,3 +54,17 @@ input[type="text"] {
 width: 40px;
     margin: 20px ;
 }
+
+.form-submit {
+    display: inline-block;
+    padding: 10px 20px; /* Ajusta el relleno según sea necesario */
+    background-color: #8DCB9E; /* Color de fondo */
+    color: white; /* Color del texto */
+    text-decoration: none; /* Elimina el subrayado del texto */
+    border: none; /* Elimina el borde */
+    border-radius: 0; /* Elimina la curvatura de los bordes */
+}
+
+.form-submit:hover {
+    background-color: darkgreen; /* Cambia el color de fondo al pasar el mouse */
+}
