@@ -1,0 +1,56 @@
+
+
+.container {
+    width: 300px;
+    margin: 100px auto;
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 5px;
+    text-align: center;
+    font-family: "Releway"; 
+    color: #8DCB9E;
+    font-size: 25px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+
+.appointment-form {
+    /* Estilos generales para el formulario */
+    /* Por ejemplo: */
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+.form-label {
+    /* Estilos para las etiquetas */
+    /* Por ejemplo: */
+    font-weight: bold;
+}
+
+.form-label1 {
+margin: 20px;
+
+}
+
+.h1 {
+    height: 10px; /* Ajusta la altura a 10px */
+    width: 20px; /* Ajusta el ancho a 20px */
+    margin: 25px; /* Ajusta el margen a 25px en todas las direcciones */
+}
+
+
+input[type="text"] {
+    width: 100px; /* Ancho del cuadro de texto */
+    height: 20px; /* Altura del cuadro de texto */
+}
+
+.label .form-label{
+width: 40px;
+    margin: 20px ;
+}
