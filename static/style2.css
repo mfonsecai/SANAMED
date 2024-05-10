@@ -566,5 +566,13 @@
 
 .casa a {
     margin-left: -190px;
+    
+}
+.download-1 {
+    float: right; /* Para alinear a la derecha */
 }
 
+.download-1 img {
+    width: 50px; /* Tamaño deseado de la imagen */
+    height: auto; /* Mantener la proporción de aspecto */
+}
