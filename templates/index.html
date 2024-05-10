@@ -6,6 +6,40 @@
     <title>Login</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+<style>
+    .alert {
+        background-color: #8DCB9E;
+        color: white;
+        padding: 10px;
+        font-size: 20px;
+        border: 1px solid #8DCB9E;
+        border-radius: 4px;
+        max-width: 90%;
+        width: 400px;
+        position: relative;
+        margin: 10px auto;
+    }
+
+    .closebtn {
+        color: white;
+        float: right;
+        font-size: 25px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .closebtn:hover {
+        color: black;
+    }
+
+    @media (max-width: 480px) {
+        .alert {
+            width: 90%;
+            max-width: 90%;
+        }
+    }
+</style>
+</head>
 <body>
     <div class="login-container">
         <h1>Bienvenido a SANAMED</h1>
@@ -14,7 +48,10 @@
         <img src="{{ url_for('static', filename='salud-mental1.jpg') }}" alt="Descripción de la imagen">
 
         {% if error %}
-        <p class="error">{{ error }}</p>
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{ error }}
+        </div>
         {% endif %}
 
         <form action="/login" method="POST">

@@ -23,6 +23,7 @@ h1{
     font-family: "Releway"; 
     color: #8DCB9E;
     font-size: 20px;
+    
    
 }
 
@@ -48,11 +49,9 @@ button {
     box-sizing: border-box;
 }
 
-
- 
-
 button {
     background-color: #8DCB9E;
+    font-size:20px;
     color: #fff;
     border: none;
     cursor: pointer;
@@ -64,7 +63,7 @@ button:hover {
 
 .forgot-password {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 18px;
     font-family: jomhuria; 
     list-style: none ;
     color: green; 
@@ -72,9 +71,12 @@ button:hover {
 }
 
 .forgot-password a {
-    text-align: end;
+    text-align: center;
+    margin-top: 20px;
     color:green ;
     text-decoration: none;
+    font-size:20px;
+   
 }
 .username::placeholder {
     color: #8DCB9E; /* Verde */
@@ -92,11 +94,13 @@ button:hover {
 
 .register-link {
     color: #8DCB9E;
+    font-size:20px;
 }
 
 .register-link a {
     color: green;
     text-decoration: none;
+    font-size:20px;
 }
 
 

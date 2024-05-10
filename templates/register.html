@@ -5,13 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+    <style>
+        .alert {
+            background-color: #8DCB9E;
+            color: white;
+            padding: 20px;
+            border: 1px solid #8DCB9E;
+            border-radius: 4px;
+            max-width: 90%;
+            width: 400px;
+            position: relative;
+            margin: 10px auto;
+        }
+
+        .closebtn {
+            color: white;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .closebtn:hover {
+            color: black;
+        }
+
+        @media (max-width: 480px) {
+            .alert {
+                width: 90%;
+                max-width: 90%;
+            }
+        }
+    </style>
 </head>
 <body>
-    
     <div class="container">
         <h2>Registrarse</h2>
         <img src="{{ url_for('static', filename='salud-mental1.jpg') }}" alt="Descripción de la imagen">
-
+        {% if error %}
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{ error }}
+        </div>
+        {% endif %}
         <form action="/signup" method="POST">
             <div class="form-group">
                 <label for="nombre">Nombre completo:</label>
@@ -41,9 +77,6 @@
                 <label for="contrasena">Contraseña:</label>
                 <input type="password" id="contrasena" name="contrasena" required>
             </div>
-            {% if error %}
-            <p class="error">{{ error }}</p>
-            {% endif %}
             <button type="submit" class="btn">Registrarse</button>
         </form>
         <div class="register-link">
