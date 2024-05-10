@@ -108,7 +108,7 @@
     }
     
     .settings-v-1 .happy {
-        margin: 0 24.4px 0.3px 0;
+        margin: 0 15.4px 0.3px 0;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -566,13 +566,5 @@
 
 .casa a {
     margin-left: -190px;
-    
-}
-.download-1 {
-    float: right; /* Para alinear a la derecha */
 }
 
-.download-1 img {
-    width: 50px; /* Tamaño deseado de la imagen */
-    height: auto; /* Mantener la proporción de aspecto */
-}
