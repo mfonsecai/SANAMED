@@ -6,7 +6,8 @@
 }
 
 .login-container {
-    width: 300px;
+    width: 450px;
+    height: 870px;
     margin: 100px auto;
     background-color: #fff;
     padding: 50px;
@@ -31,4 +32,30 @@
             margin-top: 50px; /* Mover la imagen 20px hacia abajo */
         
         
+    }
+
+
+    .btn.btn-success.btn-lg.btn-block {
+        height: 80px;
+        margin-top: 100px; /* Ajusta este valor según lo que necesites */
+        text-align: center; /* Centra el texto horizontalmente */
+        line-height: 60px; /* Ajusta la altura de línea para centrar verticalmente */
+        background-color: #AEAFF7;
+
+    }
+    
+      
+
+      .btn.btn-primary.btn-lg.btn-block {
+        height: 80px;
+        margin-top: 150px; /* Ajusta este valor según lo que necesites */
+        text-align: center; /* Centra el texto horizontalmente */
+        line-height: 60px; /* Ajusta la altura de línea para centrar verticalmente */
+        background-color: #69B9E7;
+      }
+
+
+      .img img {
+        width: 50%; /* Ancho al 100% del contenedor */
+        height: auto; /* Altura automática para mantener la proporción */
     }

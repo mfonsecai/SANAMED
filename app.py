@@ -1,5 +1,5 @@
 import re
-from datetime import datetime,date
+from datetime import datetime
 from flask import Flask, render_template, request, session, redirect, url_for
 from flask_mysqldb import MySQL
 import random
@@ -165,25 +165,15 @@ def agendar_cita():
             cita_existente = cur.fetchone()
             cur.close()
 
-            # Validar que la fecha no sea anterior a la fecha actual
-            fecha_actual = date.today()
-            fecha_seleccionada = datetime.strptime(fecha, '%Y-%m-%d').date()
-
-            if fecha_seleccionada < fecha_actual:
-                error = "No puedes programar una cita en una fecha anterior a la fecha actual."
-                return render_template('agendar_cita.html', error=error, profesionales=obtener_profesionales_disponibles())
-
             if cita_existente:
                 error = "Ya hay una cita programada para esa fecha y hora."
                 return render_template('agendar_cita.html', error=error, profesionales=obtener_profesionales_disponibles())
             else:
-                # Convertir la hora AM/PM a un formato de 24 horas
-                hora_seleccionada = datetime.strptime(hora, '%I:%M %p').strftime('%H:%M')
-
+                hora_seleccionada = datetime.strptime(hora, '%H:%M').time()
                 hora_inicio = datetime.strptime('08:00', '%H:%M').time()
                 hora_fin = datetime.strptime('17:00', '%H:%M').time()
                 
-                if hora_seleccionada < hora_inicio.strftime('%H:%M') or hora_seleccionada > hora_fin.strftime('%H:%M'):
+                if hora_seleccionada < hora_inicio or hora_seleccionada > hora_fin:
                     error = "La hora seleccionada está fuera del rango permitido (8:00 - 17:00)."
                     return render_template('agendar_cita.html', error=error, profesionales=obtener_profesionales_disponibles())
 
@@ -192,7 +182,7 @@ def agendar_cita():
                 cur = mysql.connection.cursor()
                 try:
                     cur.execute("INSERT INTO Consultas (id_usuario, id_profesional, fecha_consulta, hora_consulta, motivo) VALUES (%s, %s, %s, %s, %s)",
-                                (id_usuario, id_profesional, fecha, hora_seleccionada, motivo))
+                                (id_usuario, id_profesional, fecha, hora, motivo))
                     mysql.connection.commit()
 
                     cur.execute("INSERT INTO Profesionales_Usuarios (id_profesional, id_usuario) VALUES (%s, %s)",
