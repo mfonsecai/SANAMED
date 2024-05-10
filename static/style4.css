@@ -7,7 +7,7 @@
 
 .login-container {
     width: 450px;
-    height: 870px;
+    height: 840px;
     margin: 100px auto;
     background-color: #fff;
     padding: 50px;
@@ -59,3 +59,34 @@
         width: 50%; /* Ancho al 100% del contenedor */
         height: auto; /* Altura automática para mantener la proporción */
     }
+
+    .container-111  {
+      margin-right: 250px; /* Margen derecho para los enlaces */
+      margin-top: 50px;
+    
+    }
+
+      
+  
+      .container-111 img {
+        margin-top: 20px; /* Desplazamiento hacia abajo */  }
+
+      
+
+  .casa {
+      margin-left: 60px;
+      margin-top: -40px;
+
+      
+  }
+  .download-1 {
+      float: right; /* Para alinear a la derecha */
+      margin-top: -40px;
+
+  }
+  
+  .download-1 img {
+      width: 50px; /* Tamaño deseado de la imagen */
+      height: auto; /* Mantener la proporción de aspecto */
+  }
+  
