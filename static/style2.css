@@ -108,7 +108,7 @@
     }
     
     .settings-v-1 .happy {
-        margin: 0 24.4px 0.3px 0;
+        margin: 0 3.1px 0 4.6px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -118,7 +118,7 @@
     }
     
     .settings-v-1 .feliz {
-        margin: 0 17px 0 17.4px;
+        margin: 20 px 0 17.4px;
         overflow-wrap: break-word;
         font-family: 'Epilogue';
         font-weight: 500;
@@ -149,8 +149,6 @@
         flex-basis: 61.9px;
         box-sizing: border-box;
         margin-right: -24px;
-        
-        
 
     }
     
@@ -183,7 +181,7 @@
     }
     
     .settings-v-1 .enojado {
-        margin: 0 6.3px 0 5.8px;
+        margin: 0 40px 0 17.4px;
         overflow-wrap: break-word;
         font-family: 'Epilogue';
         font-weight: 500;
@@ -468,7 +466,7 @@
         border-radius: 16px;
         background: #AEAFF7;
         position: relative;
-        margin-bottom: 9.6px;
+        margin-bottom: 9px;
         display: flex;
         padding: 14.2px 12.6px 14px 13.5px;
         width: 60.1px;
@@ -492,7 +490,7 @@
         border-radius: 16px;
         background: #4B8D8C;
         position: relative;
-        margin: 0 1.8px 9.6px 0;
+        margin: 0 8.8px 9.6px 0;
         display: flex;
         padding: 16px 13.5px 14.5px 12.7px;
         width: 60.1px;
@@ -536,7 +534,7 @@
         justify-content: space-between;
         padding: 15.1px 13.4px 14.2px 13.8px;
         height: 61px;
-        width: 100%;
+        width: 98%;
         box-sizing: border-box;
     }
     
