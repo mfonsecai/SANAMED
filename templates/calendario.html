@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario de emociones</title>
+</head>
+<body>
+    <h1>Calendario de emociones</h1>
+    <!-- Formulario para seleccionar una fecha -->
+    <form action="/seleccionar_dia" method="post">
+        <label for="fecha">Selecciona una fecha:</label>
+        <input type="date" id="fecha" name="fecha">
+        <button type="submit">Ver emociones</button>
+        <button type="submit" formaction="/consultas_dia">Ver consultas</button>
+    </form>
+</body>
+</html>

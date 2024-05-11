@@ -42,30 +42,30 @@
 </head>
 <body>
     <div class="login-container">
-        <h1>Bienvenido a SANAMED</h1>
-        <h2>INICIO DE SESIÓN</h2>
+        <h1 title="Bienvenido a SANAMED">Bienvenido a SANAMED</h1>
+        <h2 title="Inicio de Sesión">INICIO DE SESIÓN</h2>
 
-        <img src="{{ url_for('static', filename='salud-mental1.jpg') }}" alt="Descripción de la imagen">
+        <img src="{{ url_for('static', filename='salud-mental1.jpg') }}" alt="Descripción de la imagen" title="Imagen ilustrativa sobre salud mental">
 
         {% if error %}
-        <div class="alert">
+        <div class="alert" title="Mensaje de Alerta">
             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
             {{ error }}
         </div>
         {% endif %}
 
         <form action="/login" method="POST">
-            <input type="text" class="username" name="correo" placeholder="Correo Electrónico" required>
-            <input type="password" class="password" name="contrasena" placeholder="Contraseña" required>
+            <input type="text" class="username" name="correo" placeholder="Correo Electrónico" required title="Ingrese su dirección de correo electrónico">
+            <input type="password" class="password" name="contrasena" placeholder="Contraseña" required title="Ingrese su contraseña">
             <div class="forgot-password">
-                <a href="SOFTWARE II/templates/register.html">¿Olvidaste tu contraseña?</a>
+                <a href="SOFTWARE II/templates/register.html" title="¿Olvidaste tu contraseña?">¿Olvidaste tu contraseña?</a>
             </div>
-            <button type="submit">Inicio Sesión</button>
+            <button type="submit" title="Iniciar Sesión">Inicio Sesión</button>
         </form>
 
         <!-- Agregar enlace para ir a la página de registro -->
-        <div class="register-link">
-            ¿No tienes una cuenta? <a href="{{ url_for('register') }}">Regístrate aquí</a>
+        <div class="register-link" title="Registro">
+            <span>¿No tienes una cuenta?</span> <a href="{{ url_for('register') }}">Regístrate aquí</a>
         </div>
     </div>
 </body>

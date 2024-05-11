@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emociones del día</title>
+</head>
+<body>
+    <h1>Emociones del día {{ fecha_seleccionada }}</h1>
+
+    {% if mensaje %}
+        <p>{{ mensaje }}</p>
+    {% else %}
+        <ul>
+            {% for emocion, hora in emociones_horas %}
+                <li>{{ emocion }} - {{ hora }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

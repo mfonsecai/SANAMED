@@ -1,6 +1,6 @@
 import re
 from datetime import datetime,date
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for, jsonify
 from flask_mysqldb import MySQL
 import random
 
@@ -210,6 +210,64 @@ def agendar_cita():
         return redirect(url_for('index'))
 
     return render_template('agendar_cita.html', profesionales=obtener_profesionales_disponibles())
+@app.route('/calendario')
+def mostrar_calendario():
+    # Aquí debes implementar la lógica para mostrar el calendario
+    return render_template('calendario.html')
+
+# Ruta para seleccionar un día y mostrar las emociones
+@app.route('/seleccionar_dia', methods=['POST'])
+def seleccionar_dia():
+    if request.method == 'POST':
+        fecha_seleccionada = request.form['fecha']
+        emociones, horas = obtener_emociones_por_fecha(fecha_seleccionada)
+        if not emociones:
+            mensaje = "No hay emociones registradas para este día."
+            return render_template('emociones.html', fecha_seleccionada=fecha_seleccionada, mensaje=mensaje)
+        return render_template('emociones.html', fecha_seleccionada=fecha_seleccionada, emociones_horas=zip(emociones, horas))
+
+def obtener_emociones_por_fecha(fecha):
+    cur = mysql.connection.cursor()
+    query = "SELECT emocion, HOUR(fecha_emocion), MINUTE(fecha_emocion) FROM Emociones WHERE DATE(fecha_emocion) = %s"
+    cur.execute(query, (fecha,))
+    emociones = []
+    horas = []
+    for row in cur.fetchall():
+        emociones.append(row[0])
+        hora = str(row[1]).zfill(2)
+        minuto = str(row[2]).zfill(2)
+        hora_formateada = f"{hora}:{minuto}"
+        horas.append(hora_formateada)
+    cur.close()
+    return emociones, horas
+def obtener_especialidad_profesional(id_profesional):
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT especialidad FROM Profesionales WHERE id_profesional = %s", (id_profesional,))
+    especialidad_profesional = cur.fetchone()[0]
+    cur.close()
+    return especialidad_profesional
+
+@app.route('/consultas_dia', methods=["GET", 'POST'])
+def consultas_dia():
+    if request.method == 'POST':
+        fecha_seleccionada = request.form['fecha']
+        consultas = obtener_consultas_por_fecha(fecha_seleccionada)
+        return render_template('consultas.html', fecha_seleccionada=fecha_seleccionada, consultas=consultas, obtener_nombre_profesional=obtener_nombre_profesional, obtener_especialidad_profesional=obtener_especialidad_profesional)
+
+def obtener_consultas_por_fecha(fecha):
+    cur = mysql.connection.cursor()
+    query = "SELECT id_usuario, id_profesional, fecha_consulta, hora_consulta, motivo FROM Consultas WHERE DATE(fecha_consulta) = %s"
+    cur.execute(query, (fecha,))
+    consultas = cur.fetchall()
+    cur.close()
+    return consultas
+
+def obtener_nombre_profesional(id_profesional):
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT nombre FROM Profesionales WHERE id_profesional = %s", (id_profesional,))
+    nombre_profesional = cur.fetchone()[0]
+    cur.close()
+    return nombre_profesional
 
 if __name__ == '__main__':
     app.secret_key = "sanamed"
