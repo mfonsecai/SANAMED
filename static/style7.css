@@ -68,3 +68,34 @@ width: 40px;
 .form-submit:hover {
     background-color: darkgreen; /* Cambia el color de fondo al pasar el mouse */
 }
+
+
+.container-111  {
+    margin-right: 250px; /* Margen derecho para los enlaces */
+    margin-top: 50px;
+  
+  }
+
+    
+
+    .container-111 img {
+      margin-top: 20px; /* Desplazamiento hacia abajo */  }
+
+    
+
+.casa {
+    margin-left: 60px;
+    margin-top: -50px;
+
+    
+}
+.download-1 {
+    float: right; /* Para alinear a la derecha */
+    margin-top: -50px;
+
+}
+
+.download-1 img {
+    width: 50px; /* Tamaño deseado de la imagen */
+    height: auto; /* Mantener la proporción de aspecto */
+}
