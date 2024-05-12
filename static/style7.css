@@ -1,7 +1,5 @@
-
-
 .container {
-    width: 320px;
+    width: 340px;
     margin: 100px auto;
     background-color: #fff;
     padding: 50px;
@@ -10,26 +8,21 @@
     font-family: "Releway"; 
     color: #8DCB9E;
     font-size: 25px;
+    height: 760px;
 }
-
 body {
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
 }
-
 .appointment-form {
-    /* Estilos generales para el formulario */
-    /* Por ejemplo: */
     max-width: 500px;
-    margin: 0 auto;
-    padding: 23px;
+    margin: auto;
+    padding: 40px;
     background-color: #f9f9f9;
     border-radius: 10px;
+    height: 470px;
 }
-
 .form-label {
-    /* Estilos para las etiquetas */
-    /* Por ejemplo: */
     font-weight: bold;
 }
 
@@ -63,36 +56,27 @@ width: 40px;
     text-decoration: none; /* Elimina el subrayado del texto */
     border: none; /* Elimina el borde */
     border-radius: 0; /* Elimina la curvatura de los bordes */
+    margin-top: 30px;
+    font-family: "Releway"; 
 }
-
 .form-submit:hover {
     background-color: darkgreen; /* Cambia el color de fondo al pasar el mouse */
 }
-
-
 .container-111  {
     margin-right: 250px; /* Margen derecho para los enlaces */
     margin-top: 50px;
-  
-  }
-
-    
-
+  }    
     .container-111 img {
       margin-top: 20px; /* Desplazamiento hacia abajo */  }
-
-    
 
 .casa {
     margin-left: 60px;
     margin-top: -50px;
-
-    
 }
 .download-1 {
     float: right; /* Para alinear a la derecha */
     margin-top: -50px;
-
+    width: 50px;
 }
 
 .download-1 img {

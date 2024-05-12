@@ -4,15 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendario de emociones</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style8.css') }}">
 </head>
 <body>
-    <h1>Calendario de emociones</h1>
-    <!-- Formulario para seleccionar una fecha -->
-    <form action="/seleccionar_dia" method="post">
-        <label for="fecha">Selecciona una fecha:</label>
-        <input type="date" id="fecha" name="fecha">
-        <button type="submit">Ver emociones</button>
-        <button type="submit" formaction="/consultas_dia">Ver consultas</button>
-    </form>
+    <div class="container">
+        <h1>Calendario de emociones</h1>
+        <!-- Formulario para seleccionar una fecha -->
+        <form action="/seleccionar_dia" method="post" class="appointment-form">
+            <div class="container-111">
+                <label for="fecha" class="form-label">Selecciona una fecha:</label>
+                <input type="date" id="fecha" name="fecha">
+            </div>
+            <div class="emociones">
+                <button type="submit" class="form-submit">Ver emociones</button>
+            </div>
+            <div class="consultas">
+                <button type="submit" formaction="/consultas_dia" class="form-submit">Ver consultas</button>
+            </div>
+        </form>
+        <div class="container-1">
+            <div class="gear-setting-icon-clipart-1">
+            </div>
+            <div class="config">
+                <a href=""><img src="static/556-5567171_gear-setting-icon-clipart 1.png" alt=""></a>
+            </div>
+            <div class="download-20">
+                <a href="{{ url_for('index') }}"><img src="static/iconmonstr-log-out-17-240.png" alt=""></a>
+            </div>
+            <div class="casa">
+                <a href="{{ url_for('user_home') }}"><img src="static/25694 1.png" alt=""></a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

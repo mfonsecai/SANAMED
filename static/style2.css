@@ -8,7 +8,6 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
   
-  
   .settings-container {
         background: var(--palette-white-1, #FFFFFF);
         display: flex;
@@ -17,37 +16,7 @@
         box-sizing: border-box;
     }
     
-    .settings-container .welcome-message {
-        margin: 0 12px 19px 12px;
-        align-self: flex-start;
-        overflow-wrap: break-word;
-        font-family: 'Alegreya';
-        font-weight: 500;
-        font-size: 26px;
-        line-height: 1.231;
-        color: #371B34;
-    }
-    
-    .welcome-message{
-        font-family: 'Epilogue';
-        font-weight: 700;
-        font-size: 26px;
-        line-height: 1.333;
-    }
-    
-    .welcome-message {
-        font-family: 'Epilogue';
-        font-weight: 500;
-        font-size: 26px;
-        line-height: 1.333;
-    }
-    
-    .welcome-message {
-        font-family: 'Epilogue';
-        font-weight: 600;
-        font-size: 26px;
-        line-height: 1.333;
-    }
+
     
     .settings-container .group-73 {
         border-radius: 16px;
@@ -115,6 +84,8 @@
         flex-grow: 1;
         flex-basis: 60.1px;
         box-sizing: border-box;
+        margin-left: 10px;
+        margin-right: 8px;
     }
     
     .settings-v-1 .feliz {
@@ -124,6 +95,7 @@
         font-weight: 500;
         font-size: 12px;
         color: var(--gray-3, #828282);
+        
     }
     
     .settings-v-1 .happy-1 {
@@ -141,25 +113,24 @@
     
     .settings-v-1 .relax {
         border-radius: 16px;
-        margin-right: 22.6px;
         display: flex;
         flex-direction: column;
         align-items: center;
         flex-grow: 1;
         flex-basis: 61.9px;
         box-sizing: border-box;
-        margin-right: -24px;
-
+        margin-left: 9px;
+        margin-right: 85px;
     }
     
     .settings-v-1 .relajado {
-        margin: 0 35px 0 17.4px;
+        margin: 0 30px 0 17.4px;
         overflow-wrap: break-word;
         font-family: 'Epilogue';
         font-weight: 500;
         font-size: 12px;
         color: var(--gray-3, #828282);
-        margin-left: 20px;
+        margin-left: 10px;
     }
     
     .settings-v-1 .relax-1 {
@@ -170,14 +141,14 @@
     }
     
     .settings-v-1 .focus {
-        margin-right: 24.4px;
         display: flex;
         flex-direction: column;
         align-items: center;
         flex-grow: 1;
         flex-basis: 60.1px;
         box-sizing: border-box;
-        margin: 0px;
+        margin-left: -90px;
+        margin-right: 10px;
     }
     
     .settings-v-1 .enojado {
@@ -187,6 +158,9 @@
         font-weight: 500;
         font-size: 12px;
         color: var(--gray-3, #828282);
+        margin-left: 10px;
+        margin-right: 10px;
+        
     }
 
     .settings-v-1 .focus-1{
@@ -202,6 +176,7 @@
         width: 32.8px;
         height: 31.8px;
         box-sizing: border-box;
+        
     }
     
     .settings-v-1 .vector-6 {
@@ -217,7 +192,9 @@
         flex-grow: 1;
         flex-basis: 60.1px;
         box-sizing: border-box;
-        margin: 0;
+        margin-left: 2px;
+        margin-right: 10px;
+    
 
     }
     
@@ -235,6 +212,7 @@
         width: 32.8px;
         height: 31.8px;
         box-sizing: border-box;
+
     }
     
     .settings-v-1 .vector-7 {
