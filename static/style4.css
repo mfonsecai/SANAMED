@@ -7,7 +7,7 @@
 
 .login-container {
     width: 450px;
-    height: 840px;
+    height: 860px;
     margin: 100px auto;
     background-color: #fff;
     padding: 50px;
@@ -19,46 +19,43 @@
     ;
  }
     
-
-
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #e21717;
-    }
-
     .login-container .img {
             width: 100%; /* Ajusta el ancho al 100% del contenedor */
             height: 100px; /* Altura automática para mantener la proporción */
-            margin-top: 50px; /* Mover la imagen 20px hacia abajo */
-        
-        
+            margin-top: 50px; /* Mover la imagen 20px hacia abajo */  
     }
-
 
     .btn.btn-success.btn-lg.btn-block {
         height: 80px;
         margin-top: 85px; /* Ajusta este valor según lo que necesites */
         text-align: center; /* Centra el texto horizontalmente */
         line-height: 60px; /* Ajusta la altura de línea para centrar verticalmente */
-        background-color: #a6a8e7;
+        background-color: #8DCB9E;
+        font-family: "Releway"; 
+        font-size: 22px;
 
     }
     
       
 
       .btn.btn-primary.btn-lg.btn-block {
+        float: center;
         height: 80px;
         margin-top: 170px; /* Ajusta este valor según lo que necesites */
         text-align: center; /* Centra el texto horizontalmente */
         line-height: 60px; /* Ajusta la altura de línea para centrar verticalmente */
-        background-color: #69B9E7;
+        background-color: #8DCB9E;
+        font-family: "Releway"; 
+        font-size: 22px;
+        
       }
 
 
       .img img {
-        width: 50%; /* Ancho al 100% del contenedor */
+        width: 45%; /* Ancho al 100% del contenedor */
         height: auto; /* Altura automática para mantener la proporción */
-    }
+        margin-top: 10px;
+      }
 
     .container-111  {
       margin-right: 250px; /* Margen derecho para los enlaces */
@@ -66,10 +63,8 @@
     
     }
 
-      
-  
       .container-111 img {
-        margin-top: 20px; /* Desplazamiento hacia abajo */  }
+        margin-top: 75px; /* Desplazamiento hacia abajo */  }
 
       
 

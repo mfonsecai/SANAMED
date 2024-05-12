@@ -29,14 +29,14 @@ body {
 }
 .form-submit {
     display: inline-block;
-    padding: 25px 25px; /* Ajusta el ancho de los botones */
+    padding: 25px 30px; /* Ajusta el ancho de los botones */
     background-color: #8DCB9E;
     color: white;
     text-decoration: none;
     border: none;
     border-radius: 0;
-    margin: 30px; /* Ajusta el margen entre los botones */
-    width: 70%;
+    margin: 20px; /* Ajusta el margen entre los botones */
+    width: 80%;
     font-family: "Releway"; 
     font-size: 22px;
     position: center;

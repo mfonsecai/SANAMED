@@ -8,31 +8,31 @@
 </head>
 <body>
     <div class="container">
-        <h1>Calendario de emociones</h1>
+        <h1 title="Calendario de emociones">Calendario de emociones</h1>
         <!-- Formulario para seleccionar una fecha -->
         <form action="/seleccionar_dia" method="post" class="appointment-form">
             <div class="container-111">
-                <label for="fecha" class="form-label">Selecciona una fecha:</label>
-                <input type="date" id="fecha" name="fecha">
+                <label for="fecha" class="form-label" title="Seleccionar una fecha">Selecciona una fecha:</label>
+                <input type="date" id="fecha" name="fecha" title="Ingrese una fecha">
             </div>
             <div class="emociones">
-                <button type="submit" class="form-submit">Ver emociones</button>
+                <button type="submit" class="form-submit" title="Ver emociones registradas">Emociones registradas</button>
             </div>
             <div class="consultas">
-                <button type="submit" formaction="/consultas_dia" class="form-submit">Ver consultas</button>
+                <button type="submit" formaction="/consultas_dia" class="form-submit" title="Ver citas programadas">Citas programadas</button>
             </div>
         </form>
         <div class="container-1">
-            <div class="gear-setting-icon-clipart-1">
+            <div class="gear-setting-icon-clipart-1" title="Ajustes">
             </div>
             <div class="config">
-                <a href=""><img src="static/556-5567171_gear-setting-icon-clipart 1.png" alt=""></a>
+                <a href=""><img src="static/556-5567171_gear-setting-icon-clipart 1.png" alt="" title="Ajustes"></a>
             </div>
-            <div class="download-20">
-                <a href="{{ url_for('index') }}"><img src="static/iconmonstr-log-out-17-240.png" alt=""></a>
+            <div class="download-20" title="Cerrar Sesión">
+                <a href="{{ url_for('index') }}"><img src="static/iconmonstr-log-out-17-240.png" alt="Icono de Cerrar Sesión"></a>
             </div>
-            <div class="casa">
-                <a href="{{ url_for('user_home') }}"><img src="static/25694 1.png" alt=""></a>
+            <div class="casa" title="Inicio">
+                <a href="{{ url_for('user_home') }}"><img src="static/25694 1.png" alt="Icono de Inicio"></a>
             </div>
         </div>
     </div>

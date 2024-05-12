@@ -7,63 +7,56 @@
     <title>Sanamed - Software de Salud Mental</title>
 </head>
 <body>
-
+    <div class="container"> 
+        <h1 title="Agende su Cita">Agende su Cita</h1>
+        <form action="/agendar_cita" method="POST" class="appointment-form">
+            <label for="fecha" class="form-label" title="Fecha">Fecha:</label>
+            <input type="date" id="fecha" name="fecha" required class="form-input" title="Seleccione una fecha"><br><br>
+        
+            <label for="hora" class="form-label" title="Hora">Hora:</label>
+            <select id="hora" name="hora" required class="form-select" title="Seleccione una hora">
+                <option value="" disabled selected>Selecciona una hora</option>
+                <option value="08:00 AM">08:00 AM</option>
+                <option value="09:00 AM">09:00 AM</option>
+                <option value="10:00 AM">10:00 AM</option>
+                <option value="11:00 AM">11:00 AM</option>
+                <option value="12:00 PM">12:00 PM</option>
+                <option value="01:00 PM">01:00 PM</option>
+                <option value="02:00 PM">02:00 PM</option>
+                <option value="03:00 PM">03:00 PM</option>
+                <option value="04:00 PM">04:00 PM</option>
+                <option value="05:00 PM">05:00 PM</option>
+            </select><br><br>
+        
+            {% if error %}
+            <p style="color: red;" class="form-error" title="Error">{{ error }}</p>
+            {% endif %}
     
-    <div class=" container"> 
-        <h1>Agende su Cita</h1>
-
-    <form action="/agendar_cita" method="POST" class="appointment-form">
-        <label for="fecha" class="form-label">Fecha:</label>
-        <input type="date" id="fecha" name="fecha" required class="form-input"><br><br>
+            <label for="motivo" class="form-label1" title="Motivo">Motivo:</label><br>
+            <textarea id="motivo" name="motivo" rows="7" cols="30" required class="form-textarea" title="Describa el motivo de la cita"></textarea><br><br>
         
-        <label for="hora" class="form-label">Hora:</label>
-        <select id="hora" name="hora" required class="form-select">
-            <option value="" disabled selected>Selecciona una hora</option>
-            <option value="08:00 AM">08:00 AM</option>
-            <option value="09:00 AM">09:00 AM</option>
-            <option value="10:00 AM">10:00 AM</option>
-            <option value="11:00 AM">11:00 AM</option>
-            <option value="12:00 PM">12:00 PM</option>
-            <option value="01:00 PM">01:00 PM</option>
-            <option value="02:00 PM">02:00 PM</option>
-            <option value="03:00 PM">03:00 PM</option>
-            <option value="04:00 PM">04:00 PM</option>
-            <option value="05:00 PM">05:00 PM</option>
-        </select><br><br>
+            <label for="profesional" class="form-label" title="Profesional">Profesional:</label><br>
+            <select id="profesional" name="profesional" class="form-select" title="Seleccione el profesional">
+                {% for profesional in profesionales %}
+                    <option value="{{ profesional[0] }}">{{ profesional[1] }} - {{ profesional[2] }}</option>
+                {% endfor %}
+            </select><br><br>
         
-        {% if error %}
-        <p style="color: red;" class="form-error">{{ error }}</p>
-        {% endif %}
-    
-        
-        <label for="motivo" class="form-label1">Motivo:</label><br>
-        <textarea id="motivo" name="motivo" rows="7" cols="30" required class="form-textarea"></textarea><br><br>
-        
-        <label for="profesional" class="form-label">Profesional:</label><br>
-        <select id="profesional" name="profesional" class="form-select">
-            {% for profesional in profesionales %}
-                <option value="{{ profesional[0] }}">{{ profesional[1] }} - {{ profesional[2] }}</option>
-            {% endfor %}
-        </select><br><br>
-        
-        <a href="#" id="agendar-cita" class="form-submit">Agendar Cita</a>
-    </form>
-    <div class="container-1">
-        <div class="gear-setting-icon-clipart-1">
-        </div>
-        <div class="container-111">
-            <a href=""><img src="static/556-5567171_gear-setting-icon-clipart 1.png" alt=""></a>
-        </div>
-        <div class="download-1">
-            <a href="{{ url_for('index') }}"><img src="static/iconmonstr-log-out-17-240.png" alt=""></a>
-        </div>
-        <div class="casa">
-            <a href="{{ url_for('user_home') }}"><img src="static/25694 1.png" alt=""></a>
+            <a href="#" id="agendar-cita" class="form-submit" title="Agendar Cita">Agendar Cita</a>
+        </form>
+        <div class="container-1">
+            <div class="gear-setting-icon-clipart-1" title="Ajustes">
+            </div>
+            <div class="container-111">
+                <a href=""><img src="static/556-5567171_gear-setting-icon-clipart 1.png" alt="" title="Icono de Ajustes"></a>
+            </div>
+            <div class="download-1" title="Cerrar Sesión">
+                <a href="{{ url_for('index') }}"><img src="static/iconmonstr-log-out-17-240.png" alt="Icono de Cerrar Sesión"></a>
+            </div>
+            <div class="casa" title="Inicio">
+                <a href="{{ url_for('user_home') }}"><img src="static/25694 1.png" alt="Icono de Inicio"></a>
+            </div>
         </div>
     </div>
-
-</div>
-    
-</form>
 </body>
 </html>
