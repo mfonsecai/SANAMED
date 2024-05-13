@@ -62,12 +62,20 @@
                 <option value="05:00 PM">05:00 PM</option>
             </select><br><br>
         
+            {% if success %}
+            <div class="alert success-alert" title="Cita registrada con exito">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{ success }}
+            </div>
+            {% endif %}
+
             {% if error %}
             <div class="alert" title="Mensaje de error">
                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                 {{ error }}
             </div>
             {% endif %}
+
     
             <label for="motivo" class="form-label1" title="Motivo">Motivo:</label><br>
             <textarea id="motivo" name="motivo" rows="7" cols="30" required class="form-textarea" title="Describa el motivo de la cita"></textarea><br><br>
@@ -80,7 +88,7 @@
             </select><br><br>
         
             <button type="submit" id="agendar-cita" class="form-submit" title="Agendar Cita">Agendar Cita</button>
-
+            
         </form>
         <div class="container-1">
             <div class="gear-setting-icon-clipart-1" title="Ajustes">

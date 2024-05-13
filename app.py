@@ -204,8 +204,9 @@ def agendar_cita():
                     return render_template('agendar_cita.html', error=error, profesionales=obtener_profesionales_disponibles())
                 finally:
                     cur.close()
-
-                return redirect(url_for('user_home'))
+                # Agregar el mensaje de éxito
+                success_message = "Su cita se ha registrado con éxito."
+                return render_template('agendar_cita.html', success=success_message, profesionales=obtener_profesionales_disponibles())
     else:
         return redirect(url_for('index'))
 
