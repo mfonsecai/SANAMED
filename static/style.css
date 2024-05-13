@@ -37,6 +37,19 @@ h2 {
 
 }
 
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+    
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    
+}
+
+
 input[type="text"],
 input[type="password"],
 button {

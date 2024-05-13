@@ -53,20 +53,41 @@ def login():
     if request.method == "POST" and "correo" in request.form and "contrasena" in request.form:
         username = request.form['correo']
         password = request.form['contrasena']
-
+        rol = request.form['rol']
+        
         cur = mysql.connection.cursor()
-        cur.execute("SELECT id_usuario FROM Usuarios WHERE correo = %s AND contrasena = %s", (username, password))
-        account = cur.fetchone()
+        
+        # Buscar en la tabla de usuarios
+        cur.execute("SELECT id_usuario FROM Usuarios WHERE correo = %s AND contrasena = %s AND tipo_perfil = %s", (username, password, rol))
+        user_data = cur.fetchone()
+        
+        # Si no se encuentra en la tabla de usuarios, buscar en la tabla de profesionales
+        if not user_data and rol == "profesional":
+            cur.execute("SELECT id_profesional FROM Profesionales WHERE correo = %s AND contrasena = %s", (username, password))
+            user_data = cur.fetchone()
+        
+        # Si aún no se encuentra, buscar en la tabla de administradores
+        if not user_data and rol == "admin":
+            cur.execute("SELECT id_administrador FROM Administradores WHERE correo = %s AND contrasena = %s", (username, password))
+            user_data = cur.fetchone()
 
-        if account:
+        cur.close()
+
+        if user_data:
             session['logged_in'] = True
-            session['id_usuario'] = account[0]  # Establecer el ID de usuario en la sesión
-            print("ID de usuario establecido en la sesión:", session['id_usuario'])  # Agregar esta impresión
-            return redirect(url_for('user_home'))
+            session['id_usuario'] = user_data[0]  # Establecer el ID de usuario en la sesión
+
+            if rol == 'usuario':
+                return redirect(url_for('user_home'))
+            elif rol == 'profesional':
+                return redirect(url_for('profesional_home'))
+            elif rol == 'admin':
+                return redirect(url_for('admin_home'))
         else:
             return render_template('index.html', error="Credenciales incorrectas")
 
     return render_template('index.html')
+
 
 @app.route('/registro_emocion', methods=['POST'])
 def registro_emocion():
@@ -93,7 +114,6 @@ def registro_emocion():
             return redirect(url_for('user_home'))
     else:
         return redirect(url_for('index'))
-
 @app.route('/signup', methods=["GET", 'POST'])
 def register():
     if request.method == 'POST':
@@ -109,13 +129,28 @@ def register():
         if not validate_password(contrasena):
             return render_template('register.html', error="La contraseña debe tener al menos 8 caracteres, una mayúscula y un carácter especial.")
 
+        # Verificar si el correo electrónico ya está registrado
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT id_usuario FROM Usuarios WHERE correo = %s", (correo,))
+        existing_user = cur.fetchone()
+        cur.close()
+
+        if existing_user:
+            return render_template('register.html', error="El correo electrónico ya está registrado. Por favor, utiliza otro correo electrónico")
+
         # Insertar el nuevo usuario en la base de datos
         cur = mysql.connection.cursor()
-        cur.execute(
-            "INSERT INTO Usuarios (nombre, tipo_documento, numero_documento, celular, correo, contrasena) VALUES (%s, %s, %s, %s, %s, %s)",
-            (nombre, tipo_documento, numero_documento, celular, correo, contrasena))
-        mysql.connection.commit()
-        cur.close()
+        try:
+            cur.execute(
+                "INSERT INTO Usuarios (nombre, tipo_documento, numero_documento, celular, correo, contrasena) VALUES (%s, %s, %s, %s, %s, %s)",
+                (nombre, tipo_documento, numero_documento, celular, correo, contrasena))
+            mysql.connection.commit()
+        except Exception as e:
+            mysql.connection.rollback()
+            error = "El numero de documento ya se encuentra registrado"
+            return render_template('register.html', error=error)
+        finally:
+            cur.close()
 
         return render_template('index.html')
 
