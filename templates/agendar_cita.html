@@ -6,6 +6,41 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style7.css') }}">
     <title>Sanamed - Software de Salud Mental</title>
 </head>
+<style>
+    .alert {
+        background-color: #8DCB9E;
+        color: white;
+        padding: 5px 3px;
+        font-size: 20px;
+        border: 10px solid #8DCB9E;
+        border-radius: 4px;
+        max-width: 90%;
+        position: relative;
+        margin: 10px auto;
+        width:6000px;
+        margin-top:5px;
+    }
+
+    .closebtn {
+        color: white;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top:-10px;
+    }
+
+    .closebtn:hover {
+        color: black;
+    }
+
+    @media (max-width: 480px) {
+        .alert {
+            width: 90%;
+            max-width: 90%;
+        }
+    }
+</style>
 <body>
     <div class="container"> 
         <h1 title="Agende su Cita">Agende su Cita</h1>
@@ -29,7 +64,10 @@
             </select><br><br>
         
             {% if error %}
-            <p style="color: red;" class="form-error" title="Error">{{ error }}</p>
+            <div class="alert" title="Mensaje de error">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{ error }}
+            </div>
             {% endif %}
     
             <label for="motivo" class="form-label1" title="Motivo">Motivo:</label><br>
@@ -42,7 +80,8 @@
                 {% endfor %}
             </select><br><br>
         
-            <a href="#" id="agendar-cita" class="form-submit" title="Agendar Cita">Agendar Cita</a>
+            <button type="submit" id="agendar-cita" class="form-submit" title="Agendar Cita">Agendar Cita</button>
+
         </form>
         <div class="container-1">
             <div class="gear-setting-icon-clipart-1" title="Ajustes">

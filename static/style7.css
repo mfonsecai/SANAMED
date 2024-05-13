@@ -17,10 +17,11 @@ body {
 .appointment-form {
     max-width: 500px;
     margin: auto;
-    padding: 40px;
+    padding: 25px 30px; 
     background-color: #f9f9f9;
     border-radius: 10px;
     height: 470px;
+    margin-top: 3px;
 }
 .form-label {
     font-weight: bold;
@@ -38,10 +39,6 @@ margin: 20px;
 }
 
 
-input[type="text"] {
-    width: 100px; /* Ancho del cuadro de texto */
-    height: 20px; /* Altura del cuadro de texto */
-}
 
 .label .form-label{
 width: 40px;
@@ -56,8 +53,9 @@ width: 40px;
     text-decoration: none; /* Elimina el subrayado del texto */
     border: none; /* Elimina el borde */
     border-radius: 0; /* Elimina la curvatura de los bordes */
-    margin-top: 30px;
+    margin-top: -3px;
     font-family: "Releway"; 
+    font-size: 22px;
 }
 .form-submit:hover {
     background-color: darkgreen; /* Cambia el color de fondo al pasar el mouse */
