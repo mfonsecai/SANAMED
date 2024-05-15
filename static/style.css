@@ -37,9 +37,18 @@ h2 {
 
 }
 
-.form-group {
+.form-group .label{
     margin-bottom: 20px;
     text-align: left;
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    color: #8DCB9E;
+    background-color: #8DCB9E;
     
 }
 
@@ -122,4 +131,9 @@ img {
     margin: 20px auto ; /* Centrar horizontalmente */
     text-align: center; /* Centrar contenido horizontalmente */
 
+}
+
+
+::placeholder {
+    color: #8DCB9E; /* Cambia el color a rojo */
 }

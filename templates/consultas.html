@@ -2,35 +2,35 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consultas del día {{ fecha_seleccionada }}</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style10.css') }}">
+
+
+
+ 
 </head>
 <body>
-    <h1>Consultas del día {{ fecha_seleccionada }}</h1>
+
+    <div class="container">
+        <title>Consultas del día {{ fecha_seleccionada }}</title>
+
+    <h1 class=""> Consultas del día {{ fecha_seleccionada }}</h1>
+    <div  class ="appointment-form">
+        <div class=" consultas "> 
 
     {% if consultas %}
         <table>
-            <tr>
-                <th>Fecha</th>
-                <th>Hora</th>
-                <th>Nombre Profesional</th>
-                <th>Especialidad</th>
-                <th>Motivo</th>
-            </tr>
+            <div class="citas">
+                <tr>
+                    <th style="color: blue;">Fecha</th> <!-- Cambiar el color de la fecha a azul -->
+                    <th style="color: blue;">Hora</th> <!-- Cambiar el color de la hora a verde -->
+                    <th style="color: blue;">Nombre Profesional</th> <!-- Cambiar el color del nombre del profesional a rojo -->
+                    <th style="color: blue;">Especialidad</th> <!-- Cambiar el color de la especialidad a morado -->
+                    <th style="color: blue;">Motivo</th> <!-- Cambiar el color del motivo a naranja -->
+                </tr>
+        </div>
+
             {% for consulta in consultas %}
                 <tr>
                     <td>{{ consulta[2] }}</td>  <!-- Fecha -->
@@ -44,5 +44,25 @@
     {% else %}
         <p>No hay consultas programadas para este día.</p>
     {% endif %}
+
+    <div class="container-1">
+        <div class="gear-setting-icon-clipart-1" title="Ajustes">
+        </div>
+        <div class="config">
+            <a href=""><img src="static/556-5567171_gear-setting-icon-clipart 1.png" alt="" title="Ajustes"></a>
+        </div>
+        <div class="download-20" title="Cerrar Sesión">
+            <a href="{{ url_for('index') }}"><img src="static/iconmonstr-log-out-17-240.png" alt="Icono de Cerrar Sesión"></a>
+        </div>
+        <div class="casa" title="Inicio">
+            <a href="{{ url_for('user_home') }}"><img src="static/25694 1.png" alt="Icono de Inicio"></a>
+        </div>
+
+</div>
+
+</div>
+
+</div>
+
 </body>
 </html>
