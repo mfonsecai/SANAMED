@@ -89,6 +89,7 @@ def login():
     return render_template('index.html')
 
 
+
 @app.route('/registro_emocion', methods=['POST'])
 def registro_emocion():
     if 'logged_in' in session and session['logged_in']:
@@ -114,6 +115,8 @@ def registro_emocion():
             return redirect(url_for('user_home'))
     else:
         return redirect(url_for('index'))
+    
+    
 @app.route('/signup', methods=["GET", 'POST'])
 def register():
     if request.method == 'POST':
@@ -161,6 +164,22 @@ def user_home():
     if 'logged_in' in session and session['logged_in']:
         # Aquí renderizas el home del usuario
         return render_template('user_home.html')
+    else:
+        return redirect(url_for('index'))
+    
+@app.route('/admin_home')
+def admin_home():
+    if 'logged_in' in session and session['logged_in']:
+        # Aquí renderizas el home del usuario
+        return render_template('admin_home.html')
+    else:
+        return redirect(url_for('index'))
+    
+@app.route('/profesional_home')
+def profesional_home():
+    if 'logged_in' in session and session['logged_in']:
+        # Aquí renderizas el home del usuario
+        return render_template('profesional_home.html')
     else:
         return redirect(url_for('index'))
 
