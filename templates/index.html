@@ -6,40 +6,6 @@
     <title>Login</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<style>
-    .alert {
-        background-color: #8DCB9E;
-        color: white;
-        padding: 10px;
-        font-size: 20px;
-        border: 1px solid #8DCB9E;
-        border-radius: 4px;
-        max-width: 90%;
-        width: 400px;
-        position: relative;
-        margin: 10px auto;
-    }
-
-    .closebtn {
-        color: white;
-        float: right;
-        font-size: 25px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-
-    .closebtn:hover {
-        color: black;
-    }
-
-    @media (max-width: 480px) {
-        .alert {
-            width: 90%;
-            max-width: 90%;
-        }
-    }
-</style>
-</head>
 <body>
     <div class="login-container">
         <h1 title="Bienvenido a SANAMED">Bienvenido a SANAMED</h1>
@@ -57,7 +23,7 @@
         <form action="/login" method="POST">
             <div class="form-group">
                 <label for="rol" title="Rol">Rol:</label>
-                    <select id="rol" name="rol" required>
+                <select id="rol" name="rol" title="Rol con el que desea ingresar"> <required>
                     <option value="usuario">Usuario</option>
                     <option value="profesional">Profesional</option>
                     <option value="admin">Administrador</option>
@@ -71,7 +37,6 @@
             <button type="submit" title="Iniciar Sesión">Inicio Sesión</button>
         </form>
 
-        <!-- Agregar enlace para ir a la página de registro -->
         <div class="register-link" title="Registro">
             <span>¿No tienes una cuenta?</span> <a href="{{ url_for('register') }}">Regístrate aquí</a>
         </div>
