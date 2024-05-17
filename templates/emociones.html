@@ -8,16 +8,16 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="emociones">Emociones del día {{ fecha_seleccionada }}</h1>
-        <div class="appointment-form">
+        <h1 class="emociones" title="Emociones del día {{ fecha_seleccionada }}">Emociones del día {{ fecha_seleccionada }}</h1>
+        <div class="appointment-form" title="Formulario de citas">
             {% if mensaje %}
                 <p>{{ mensaje }}</p>
             {% else %}
                 <table class="emotion-table">
                     <thead>
                         <tr>
-                            <th class="emotion-title">Emoción</th>
-                            <th class="hour-title">Hora</th>
+                            <th class="emotion-title" title="Tipo de emoción">Emoción</th>
+                            <th class="hour-title" title="Hora de registro">Hora</th>
                         </tr>
                     </thead>
                     <tbody>
