@@ -1,3 +1,4 @@
+/* Estilos para el contenedor principal */
 .container {
     width: 340px;
     margin: 100px auto;
@@ -10,10 +11,12 @@
     color: #8DCB9E;
     font-size: 25px;
 }
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
 }
+
 .appointment-form {
     max-width: 500px;
     margin: 0 auto;
@@ -21,59 +24,91 @@ body {
     background-color: #f9f9f9;
     border-radius: 10px;
     height: 410px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
+
+/* Estilos para la tabla de emociones */
+.emotion-table {
+    width: 100%; /* Ajusta el ancho de la tabla al 90% del contenedor */
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    margin: 0 auto; /* Centra la tabla horizontalmente */
+    margin-top: -240px;
+}
+
+.emotion-table th, .emotion-table td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.emotion-table thead th {
+    background-color: #f2f2f2;
+}
+
+/* Estilos para las filas de resultados */
+.emotion-row td {
+    color: #000; /* Color predeterminado para los resultados */
+}
+
+/* Otros estilos */
 .form-label {
     margin-top: 10px; 
     font-weight: bold;
-    position: center;   
+    text-align: center;   
 }
+
 .form-submit {
     display: inline-block;
-    padding: 25px 30px; /* Ajusta el ancho de los botones */
+    padding: 25px 30px;
     background-color: #8DCB9E;
     color: white;
     text-decoration: none;
     border: none;
     border-radius: 0;
-    margin: 20px; /* Ajusta el margen entre los botones */
+    margin: 20px;
     width: 80%;
     font-family: "Releway"; 
     font-size: 22px;
-    position: center;
+    text-align: center;
 }
-.emociones {
-    float: center; /* Para alinear a la derecha */
-    margin-top: -5px;
-}
-.consultas {
-    float: center; /* Para alinear a la derecha */
-    margin-top: -1px;
-}
+
 .form-submit:hover {
     background-color: darkgreen;
 }
-.container-111  {
-    margin: 50px; /* Margen derecho para los enlaces */
+
+.consultas {
+    font-size: 12px;
+    margin: -15px;
+}
+
+.container-111 {
+    margin: 50px;
     margin-top: 10px;   
     font-size: 28px; 
-    
-}   
+}
+
 .casa {
     margin-left: 60px;
     margin-top: -50px;
 }
+
 .download-20 img {
-    float: right; /* Para alinear a la derecha */
+    float: right;
     margin-top: -50px;
     width: 50px;
 }
+
 .config {
-    width: 50px; /* Tamaño deseado de la imagen */
-    height: auto; /* Mantener la proporción de aspecto */
+    width: 50px;
+    height: auto;
     margin-right: 240px;
     margin-top: 70px; 
-    
 }
-    .h1{
-        margin-left: 20px;
-    }
+
+.h1 {
+    margin-left: 20px;
+}

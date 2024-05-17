@@ -1,3 +1,4 @@
+/* Estilos para el contenedor principal */
 .container {
     width: 340px;
     margin: 100px auto;
@@ -10,90 +11,120 @@
     color: #8DCB9E;
     font-size: 25px;
 }
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
 }
+
 .appointment-form {
     max-width: 500px;
     margin: 0 auto;
-    padding: 40px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
+    padding: 50px;
+    background-color: #f2f2f2;
     height: 410px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* Asegura que el contenido se centre horizontalmente */
 }
+
+/* Estilos para los títulos de la tabla */
+.blue-title { color: green; }
+.green-title { color: green; }
+.red-title { color: green; }
+.purple-title { color: green; }
+.orange-title { color: green; }
+
+/* Estilos para la tabla */
+.table {
+    width: auto; /* Permite que la tabla se ajuste a su contenido */
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    margin: 0 auto; /* Centra la tabla horizontalmente */
+    margin-top: -240px;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+/* Estilos para la cabecera de la tabla */
+thead th {
+    background-color: #8DCB9E;
+}
+
+/* Estilos para las filas de resultados */
+.result-row td {
+    color: #000; /* Color predeterminado para los resultados */
+}
+
+/* Permitir cambiar el color de los resultados */
+.result-row td.result-color-1 { color: #ff5733; } /* Ejemplo de color 1 */
+.result-row td.result-color-2 { color: #33c3ff; } /* Ejemplo de color 2 */
+.result-row td.result-color-3 { color: #75ff33; } /* Ejemplo de color 3 */
+
+/* Otros estilos */
 .form-label {
     margin-top: 10px; 
     font-weight: bold;
-    position: center;   
+    text-align: center;   
 }
+
 .form-submit {
     display: inline-block;
-    padding: 25px 30px; /* Ajusta el ancho de los botones */
+    padding: 25px 30px;
     background-color: #8DCB9E;
     color: white;
     text-decoration: none;
     border: none;
     border-radius: 0;
-    margin: 20px; /* Ajusta el margen entre los botones */
+    margin: 20px;
     width: 80%;
     font-family: "Releway"; 
     font-size: 22px;
-    position: center;
+    text-align: center;
 }
-.emociones {
-    float: center; /* Para alinear a la derecha */
-    margin-top: -5px;
-}
-.consultas {
-    float: center; /* Para alinear a la derecha */
-    margin-top: -1px;
-}
+
 .form-submit:hover {
     background-color: darkgreen;
 }
-.container-111  {
-    margin: 50px; /* Margen derecho para los enlaces */
+
+.consultas {
+    font-size: 12px;
+    margin: -15px;
+}
+
+.container-111 {
+    margin: 50px;
     margin-top: 10px;   
     font-size: 28px; 
-    
-}   
-.casa {
-    margin-left: 10px;
-    margin-top: -50px;
 }
+
+.casa {
+    margin-left: 50px;
+    margin-top: -50px;
+    
+}
+
 .download-20 img {
-    float: right; /* Para alinear a la derecha */
+    float: right;
     margin-top: -50px;
     width: 50px;
 }
-.config {
-    width: 50px; /* Tamaño deseado de la imagen */
-    height: auto; /* Mantener la proporción de aspecto */
-    margin-right: 240px;
-    margin-top: 400px; 
-    
-}
-    .h1{
-        margin-left: -40px;
-    }
-    .table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    .th, td {
-        padding: 8px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
-    .th {
-        background-color: #f2f2f2;
-    }
 
-    .consultas {
-        font-size: 12px; /* Cambia el tamaño de letra a 12px */
-margin: -15px;    }
-    
+.config {
+    width: 50px;
+    height: auto;
+    margin-right: 240px;
+    margin-top: 40px; 
+}
+
+.h1 {
+    margin-left: -40px;
+}
 
 .citas {
     background-color: #b61717;

@@ -307,6 +307,9 @@ def consultas_dia():
     if request.method == 'POST':
         fecha_seleccionada = request.form['fecha']
         consultas = obtener_consultas_por_fecha(fecha_seleccionada)
+        if not consultas:
+            mensaje = "No hay citas registradas para este día."
+            return render_template('emociones.html', fecha_seleccionada=fecha_seleccionada, mensaje=mensaje)
         return render_template('consultas.html', fecha_seleccionada=fecha_seleccionada, consultas=consultas, obtener_nombre_profesional=obtener_nombre_profesional, obtener_especialidad_profesional=obtener_especialidad_profesional)
 
 def obtener_consultas_por_fecha(fecha):
