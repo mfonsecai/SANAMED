@@ -8,18 +8,18 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="titulo-principal">Consultas del día {{ fecha_seleccionada }}</h1>
+        <h1 class="titulo-principal" title="Consultas del día {{ fecha_seleccionada }}">Consultas del día {{ fecha_seleccionada }}</h1>
         <div class="appointment-form">
-            <div class="consultas">
+            <div class="consultas" title="Lista de consultas">
                 {% if consultas %}
                     <table class="table">
                         <thead>
                             <tr>
-                                <th class="blue-title">Fecha</th>
-                                <th class="green-title">Hora</th>
-                                <th class="red-title">Nombre Profesional</th>
-                                <th class="purple-title">Especialidad</th>
-                                <th class="orange-title">Motivo</th>
+                                <th class="blue-title" title="Fecha">Fecha</th>
+                                <th class="green-title" title="Hora">Hora</th>
+                                <th class="red-title" title="Nombre Profesional">Nombre Profesional</th>
+                                <th class="purple-title" title="Especialidad">Especialidad</th>
+                                <th class="orange-title" title="Motivo">Motivo</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -35,7 +35,7 @@
                         </tbody>
                     </table>
                 {% else %}
-                    {% if mensaje %}
+                    
                     <p>{{ mensaje }}</p>
                 {% endif %}
             </div>
