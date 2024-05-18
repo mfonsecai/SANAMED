@@ -5,11 +5,13 @@ body {
 .settings-v-1 {
     width: 400px;
     margin: 100px auto;
+    height: 820px;
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     font-family: "Releway", sans-serif;
+
 }
 
 .settings-v-1 .how-are-you-feeling-today,
@@ -433,16 +435,6 @@ body {
     
   
     
-    .settings-v-1 .container-1 {
-        margin: 0 34px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-self: flex-end;
-        width: 336px;
-        box-sizing: border-box;
-    }
-    
     .settings-v-1 .container-2 {
         margin: 0 36px 20px 36px;
         display: flex;
@@ -549,21 +541,30 @@ body {
     animation: spin 1s linear infinite; /* Activar la animación al pasar el cursor sobre la imagen */
 }
 
-
-.container-111 a {
-    margin-right: 250px;
-    color: #00fffb;
+.container-1 {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-.casa a {
-    margin-left: -190px;
-    
-}
-.download-1 {
-    float: right; /* Para alinear a la derecha */
+.config, .casa, .download-20 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -240px;
 }
 
-.download-1 img {
-    width: 50px; /* Tamaño deseado de la imagen */
-    height: auto; /* Mantener la proporción de aspecto */
+.config img, .casa img, .download-20 img {
+    width: 45px;
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.config img:hover, .casa img:hover, .download-20 img:hover {
+    transform: scale(1.1);
 }

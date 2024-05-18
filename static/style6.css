@@ -10,7 +10,7 @@ html, body {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #fff;
+    background-color: #dad7d7;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -33,7 +33,7 @@ html, body {
 }
 input, select {
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.30);
+    background-color: #8DCB9E;
     height: 45px;
     width: 150px;
     padding: 10px;
@@ -47,16 +47,16 @@ input, select {
     appearance: none;
 }
 input:hover, select:hover {
-	background-color: rgba(0, 0, 0, 0.70);
+    background-color: green;
 }
 input:active, select:active {
-	background-color: black;
+    background-color: black;
 }
 input:focus, select:focus {
-	outline: none;
+    outline: none;
 }
 .custom-select {
-	display: inline-block;
+    display: inline-block;
 }
 .custom-select select {
     -webkit-appearance: none;
@@ -88,18 +88,33 @@ input:focus, select:focus {
     margin-left: -150px;
     margin-top: -150px;
 }
+/* Estilos para el contenedor principal */
+#main-container {
+    width: 340px;
+    margin: 100px auto;
+    height: 760px;
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 5px;
+    text-align: center;
+    font-family: "Releway", sans-serif;
+    color: #8DCB9E;
+    font-size: 25px; 
+}
 #page {
-	text-align: center;
-	height: auto;
-	width: auto;
-	margin: auto;
+    text-align: center;
+    height: auto;
+    width: auto;
+    margin: auto;
 }
 #page #menu {
     margin: auto;
     padding: 10px;
     height: 65px;
     box-sizing: border-box;
+    margin-top: -40px; /* Ajusta esta cantidad según tu preferencia */
 }
+
 #page #menu h1 {
     margin: 0;
     margin-bottom: 10px;
@@ -108,7 +123,7 @@ input:focus, select:focus {
 }
 #page #view {
     position: absolute;
-    top: 65px;
+    top: 300px;
     bottom: 0;
     left: 0;
     right: 0;
@@ -123,10 +138,37 @@ input:focus, select:focus {
 #instructions {
     margin-top: 425px;
 }
- 
+.container-1 {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.config, .casa, .download-20 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -200px;
+}
+
+.config img, .casa img, .download-20 img {
+    width: 45px;
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.config img:hover, .casa img:hover, .download-20 img:hover {
+    transform: scale(1.1);
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 400px) {
-	input, select {
-	    width: 120px;
-	}
+    input, select {
+        width: 120px;
+    }
 }

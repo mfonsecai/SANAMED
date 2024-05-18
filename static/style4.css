@@ -6,7 +6,7 @@
 }
 
 .login-container {
-    width: 450px;
+    width: 440px;
     height: 860px;
     margin: 100px auto;
     background-color: #fff;
@@ -60,31 +60,30 @@
         margin-top: 10px;
       }
 
-    .container-111  {
-      margin-right: 250px; /* Margen derecho para los enlaces */
-      margin-top: 50px;
-    
+      .container-1 {
+        display: flex;
+        justify-content: center;
+        gap: 100px;
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
     }
-
-      .container-111 img {
-        margin-top: 75px; /* Desplazamiento hacia abajo */  }
-
-      
-
-  .casa {
-      margin-left: 60px;
-      margin-top: -40px;
-
-      
-  }
-  .download-1 {
-      float: right; /* Para alinear a la derecha */
-      margin-top: -40px;
-
-  }
-  
-  .download-1 img {
-      width: 50px; /* Tamaño deseado de la imagen */
-      height: auto; /* Mantener la proporción de aspecto */
-  }
-  
+    
+    .config, .casa, .download-20 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: -240px;
+    }
+    
+    .config img, .casa img, .download-20 img {
+        width: 45px;
+        height: 50px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+    
+    .config img:hover, .casa img:hover, .download-20 img:hover {
+        transform: scale(1.1);
+    }
