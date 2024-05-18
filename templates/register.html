@@ -5,43 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
-    <style>
-        .alert {
-            background-color: #8DCB9E;
-            color: white;
-            padding: 13px;
-            border: 1px solid #8DCB9E;
-            border-radius: 4px;
-            max-width: 95%;
-            width: 400px;
-            position: relative;
-            margin: 10px auto;
-            font-size:19px;
-        }
-
-        .closebtn {
-            color: white;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .closebtn:hover {
-            color: black;
-        }
-
-        @media (max-width: 480px) {
-            .alert {
-                width: 90%;
-                max-width: 90%;
-            }
-        }
-    </style>
+    
 </head>
 <body>
     <div class="container">
-        <h2 title="Registro en Sanamed">Registrarse</h2>
+        <h2 title="Registro en Sanamed">Registro</h2>
         <img src="{{ url_for('static', filename='salud-mental1.jpg') }}" alt="Descripción de la imagen" title="Imagen ilustrativa sobre salud mental">
         {% if error %}
         <div class="alert" title="La contraseña debe tener al menos 8 caracteres, una mayúscula y un carácter especial">
@@ -51,32 +19,27 @@
         {% endif %}
         <form action="/signup" method="POST">
             <div class="form-group">
-                <label for="nombre" title="Nombre completo">Nombre completo:</label>
-                <input type="text" id="nombre" name="nombre" required>
+                <input type="text" id="nombre" name="nombre" placeholder="Nombre completo" required title="Nombre completo">
             </div>
             <div class="form-group">
-                <label for="tipo_documento" title="Tipo de documento">Tipo de documento:</label>
-                <select id="tipo_documento" name="tipo_documento" required>
+                <select id="tipo_documento" name="tipo_documento" required title="Seleccione su tipo de documento">
+                    <option value="" disabled selected>Tipo de documento</option>
                     <option value="Cedula">Cedula</option>
                     <option value="Pasaporte">Pasaporte</option>
                     <option value="Tarjeta Identidad">Tarjeta Identidad</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="numero_documento" title="Número de documento"># de documento:</label>
-                <input type="text" id="numero_documento" name="numero_documento" required>
+                <input type="text" id="numero_documento" name="numero_documento" placeholder="Número de documento" required title="Número de documento">
             </div>
             <div class="form-group">
-                <label for="celular" title="Número de celular">Celular:</label>
-                <input type="text" id="celular" name="celular" required>
+                <input type="text" id="celular" name="celular" placeholder="Celular" required title="Número de celular">
             </div>
             <div class="form-group">
-                <label for="correo" title="Correo Electrónico">Correo Electrónico:</label>
-                <input type="email" id="correo" name="correo" required>
+                <input type="email" id="correo" name="correo" placeholder="Correo electrónico" required title="Correo electrónico">
             </div>
             <div class="form-group">
-                <label for="contrasena" title="Contraseña">Contraseña:</label>
-                <input type="password" id="contrasena" name="contrasena" required>
+                <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required title="Contraseña">
             </div>
             <button type="submit" class="btn" title="Registrarse">Registrarse</button>
         </form>

@@ -270,17 +270,6 @@ def mostrar_calendario():
     # Aquí debes implementar la lógica para mostrar el calendario
     return render_template('calendario.html')
 
-# Ruta para seleccionar un día y mostrar las emociones
-@app.route('/seleccionar_dia', methods=['POST'])
-def seleccionar_dia():
-    if request.method == 'POST':
-        fecha_seleccionada = request.form['fecha']
-        emociones, horas = obtener_emociones_por_fecha(fecha_seleccionada)
-        if not emociones:
-            mensaje = "No hay emociones registradas para este día."
-            return render_template('emociones.html', fecha_seleccionada=fecha_seleccionada, mensaje=mensaje)
-        return render_template('emociones.html', fecha_seleccionada=fecha_seleccionada, emociones_horas=zip(emociones, horas))
-
 def obtener_emociones_por_fecha(fecha):
     cur = mysql.connection.cursor()
     query = "SELECT emocion, HOUR(fecha_emocion), MINUTE(fecha_emocion) FROM Emociones WHERE DATE(fecha_emocion) = %s"
@@ -302,16 +291,6 @@ def obtener_especialidad_profesional(id_profesional):
     cur.close()
     return especialidad_profesional
 
-@app.route('/consultas_dia', methods=["GET", 'POST'])
-def consultas_dia():
-    if request.method == 'POST':
-        fecha_seleccionada = request.form['fecha']
-        consultas = obtener_consultas_por_fecha(fecha_seleccionada)
-        if not consultas:
-            mensaje = "No hay citas registradas para este día."
-            return render_template('emociones.html', fecha_seleccionada=fecha_seleccionada, mensaje=mensaje)
-        return render_template('consultas.html', fecha_seleccionada=fecha_seleccionada, consultas=consultas, obtener_nombre_profesional=obtener_nombre_profesional, obtener_especialidad_profesional=obtener_especialidad_profesional)
-
 def obtener_consultas_por_fecha(fecha):
     cur = mysql.connection.cursor()
     query = "SELECT id_usuario, id_profesional, fecha_consulta, hora_consulta, motivo FROM Consultas WHERE DATE(fecha_consulta) = %s"
@@ -326,7 +305,25 @@ def obtener_nombre_profesional(id_profesional):
     nombre_profesional = cur.fetchone()[0]
     cur.close()
     return nombre_profesional
+@app.route('/seleccionar_dia', methods=['POST'])
+def seleccionar_dia():
+    if request.method == 'POST':
+        fecha_seleccionada = request.form['fecha']
+        emociones, horas = obtener_emociones_por_fecha(fecha_seleccionada)
+        if not emociones:
+            mensaje = "No hay emociones registradas para este día."
+            return render_template('calendario.html', mensaje=mensaje)
+        return render_template('emociones.html', fecha_seleccionada=fecha_seleccionada, emociones_horas=zip(emociones, horas))
 
+@app.route('/consultas_dia', methods=["GET", 'POST'])
+def consultas_dia():
+    if request.method == 'POST':
+        fecha_seleccionada = request.form['fecha']
+        consultas = obtener_consultas_por_fecha(fecha_seleccionada)
+        if not consultas:
+            mensaje = "No hay citas registradas para este día."
+            return render_template('calendario.html', mensaje=mensaje)
+        return render_template('consultas.html', fecha_seleccionada=fecha_seleccionada, consultas=consultas, obtener_nombre_profesional=obtener_nombre_profesional, obtener_especialidad_profesional=obtener_especialidad_profesional)
 if __name__ == '__main__':
     app.secret_key = "sanamed"
     app.run(debug=True, host="0.0.0.0", port=5000, threaded=True)

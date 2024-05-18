@@ -3,17 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendario de emociones</title>
+    <title>Calendario</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style8.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1 title="Calendario de emociones">Calendario de emociones</h1>
+        <h1 title="Calendario">Calendario</h1>
+        
+        
         <!-- Formulario para seleccionar una fecha -->
         <form action="/seleccionar_dia" method="post" class="appointment-form">
+           <!-- Mensajes y alertas -->
+            {% if mensaje %}
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{ mensaje }}
+            </div>
+            {% endif %}
+
             <div class="container-111">
                 <label for="fecha" class="form-label" title="Seleccionar una fecha">Selecciona una fecha:</label>
-                <input type="date" id="fecha" name="fecha" title="Ingrese una fecha">
+                <input type="date" id="fecha" name="fecha" title="Ingrese una fecha" class="form-date">
             </div>
             <div class="emociones">
                 <button type="submit" class="form-submit" title="Ver emociones registradas">Emociones registradas</button>
@@ -23,16 +33,14 @@
             </div>
         </form>
         <div class="container-1">
-            <div class="gear-setting-icon-clipart-1" title="Ajustes">
-            </div>
             <div class="config">
                 <a href=""><img src="static/556-5567171_gear-setting-icon-clipart 1.png" alt="" title="Ajustes"></a>
             </div>
-            <div class="download-20" title="Cerrar Sesión">
-                <a href="{{ url_for('index') }}"><img src="static/iconmonstr-log-out-17-240.png" alt="Icono de Cerrar Sesión"></a>
+            <div class="casa">
+                <a href="{{ url_for('user_home') }}"><img src="static/25694 1.png" alt="" title="Inicio"></a>
             </div>
-            <div class="casa" title="Inicio">
-                <a href="{{ url_for('user_home') }}"><img src="static/25694 1.png" alt="Icono de Inicio"></a>
+            <div class="download-20">
+                <a href="{{ url_for('index') }}"><img src="static/iconmonstr-log-out-17-240.png" alt="" title="Cerrar Sesión"></a>
             </div>
         </div>
     </div>

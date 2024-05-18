@@ -13,11 +13,12 @@
     padding: 50px;
     border-radius: 5px;
     text-align: center;
-    font-family: "Releway"; 
+    font-family: 'Raleway', sans-serif;
     color: #8DCB9E;
     font-size: 25px;
     ;
  }
+
     
     .login-container .img {
             width: 100%; /* Ajusta el ancho al 100% del contenedor */
@@ -31,9 +32,9 @@
         text-align: center; /* Centra el texto horizontalmente */
         line-height: 60px; /* Ajusta la altura de línea para centrar verticalmente */
         background-color: #8DCB9E;
-        font-family: "Releway"; 
+        font-family: 'Raleway', sans-serif;
         font-size: 22px;
-
+        border:none;
     }
     
       
@@ -45,12 +46,14 @@
         text-align: center; /* Centra el texto horizontalmente */
         line-height: 60px; /* Ajusta la altura de línea para centrar verticalmente */
         background-color: #8DCB9E;
-        font-family: "Releway"; 
+        font-family: 'Raleway', sans-serif;
         font-size: 22px;
-        
+        border:none;
       }
 
-
+      .btn.btn-primary.btn-lg.btn-block:hover,.btn.btn-success.btn-lg.btn-block:hover {
+        background-color: darkgreen;
+      }  
       .img img {
         width: 45%; /* Ancho al 100% del contenedor */
         height: auto; /* Altura automática para mantener la proporción */

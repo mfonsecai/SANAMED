@@ -1,81 +1,177 @@
-.container {
-    width: 340px;
-    margin: 100px auto;
-    background-color: #fff;
-    padding: 50px;
-    border-radius: 5px;
-    text-align: center;
-    font-family: "Releway"; 
-    color: #8DCB9E;
-    font-size: 25px;
-    height: 760px;
-}
 body {
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
 }
+
+.container {
+    width: 340px;
+    margin: 100px auto;
+    height: 760px;
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 5px;
+    text-align: center;
+    font-family: "Releway", sans-serif;
+    color: #8DCB9E;
+    font-size: 25px;
+    position: relative;
+}
+
 .appointment-form {
     max-width: 500px;
     margin: auto;
-    padding: 25px 30px; 
+    height: 420px;
+    padding: 20px;
     background-color: #f9f9f9;
     border-radius: 10px;
-    height: 470px;
-    margin-top: 3px;
+    margin-top: 20px;
 }
+
 .form-label {
+    display: inline-block;
+    width: 100px;
+    text-align: left;
+    margin-top: 10px;
     font-weight: bold;
 }
 
-.form-label1 {
-margin: 20px;
-
+.form-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
 }
 
-.h1 {
-    height: 10px; /* Ajusta la altura a 10px */
-    width: 20px; /* Ajusta el ancho a 20px */
-    margin: 25px; /* Ajusta el margen a 25px en todas las direcciones */
+.form-input,
+.form-select,
+.form-textarea {
+    width: calc(100% - 110px);
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 
-.label .form-label{
-width: 40px;
-    margin: 20px ;
+.form-group-full {
+    margin-bottom: 15px;
+}
+
+.form-input-full,
+.form-select-full,
+.form-textarea-full {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 
 .form-submit {
     display: inline-block;
-    padding: 10px 20px; /* Ajusta el relleno según sea necesario */
-    background-color: #8DCB9E; /* Color de fondo */
-    color: white; /* Color del texto */
-    text-decoration: none; /* Elimina el subrayado del texto */
-    border: none; /* Elimina el borde */
-    border-radius: 0; /* Elimina la curvatura de los bordes */
-    margin-top: -3px;
-    font-family: "Releway"; 
+    width: 80%;
+    padding: 15px;
+    background-color: #8DCB9E;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
     font-size: 22px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
 }
+
 .form-submit:hover {
-    background-color: darkgreen; /* Cambia el color de fondo al pasar el mouse */
-}
-.container-111  {
-    margin-right: 250px; /* Margen derecho para los enlaces */
-    margin-top: 50px;
-  }    
-    .container-111 img {
-      margin-top: 20px; /* Desplazamiento hacia abajo */  }
-
-.casa {
-    margin-left: 60px;
-    margin-top: -50px;
-}
-.download-1 {
-    float: right; /* Para alinear a la derecha */
-    margin-top: -50px;
-    width: 50px;
+    background-color: darkgreen;
 }
 
-.download-1 img {
-    width: 50px; /* Tamaño deseado de la imagen */
-    height: auto; /* Mantener la proporción de aspecto */
+.container-1 {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.config, .casa, .download-20 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.config img, .casa img, .download-20 img {
+    width: 45px;
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.config img:hover, .casa img:hover, .download-20 img:hover {
+    transform: scale(1.1);
+}
+
+.alert {
+    background-color: #8DCB9E;
+    color: white;
+    padding: 5px 3px;
+    font-size: 20px;
+    border: 10px solid #8DCB9E;
+    border-radius: 4px;
+    max-width: 90%;
+    position: relative;
+    margin: 10px auto;
+    margin-top: 10px;
+}
+
+.closebtn {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: -10px;
+}
+
+.closebtn:hover {
+    color: black;
+}
+
+#motivo {
+    height: 70px;
+    resize: none;
+}
+
+#motivo-label {
+    display: inline-block;
+    width: 100px;
+    text-align: left;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+@media (max-width: 480px) {
+    .alert {
+        width: 90%;
+        max-width: 90%;
+    }
+
+    .form-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+        width: 100%;
+    }
+
+    .form-label,
+    #motivo-label {
+        width: 100%;
+    }
 }

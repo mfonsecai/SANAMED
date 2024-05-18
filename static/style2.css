@@ -1,4 +1,7 @@
-
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #dad7d7;
+}
 .settings-v-1 {
     width: 400px;
     margin: 100px auto;
@@ -6,7 +9,39 @@
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    font-family: "Releway", sans-serif;
 }
+
+.settings-v-1 .how-are-you-feeling-today,
+.settings-v-1 .calmado,
+.settings-v-1 .feliz,
+.settings-v-1 .relajado,
+.settings-v-1 .enojado,
+.settings-v-1 .triste,
+.settings-v-1 .herramientas-yactividades a,
+.settings-v-1 .terapia a,
+.settings-v-1 .calendario a,
+.settings-v-1 .sanamed,
+.settings-v-1 .musica-relajante a {
+    font-family: "Releway", sans-serif;
+}
+
+.settings-v-1 .group-73,
+.settings-v-1 .group-81,
+.settings-v-1 .happy,
+.settings-v-1 .calm,
+.settings-v-1 .relax,
+.settings-v-1 .focus,
+.settings-v-1 .focus-mood,
+.settings-v-1 .frame-13,
+.settings-v-1 .container-2,
+.settings-v-1 .container-3,
+.settings-v-1 .container-1 {
+    font-family: "Releway", sans-serif;
+}
+
+
+
   
   .settings-container {
         background: var(--palette-white-1, #FFFFFF);
@@ -32,7 +67,6 @@
         display: inline-block;
         align-self: flex-start;
         overflow-wrap: break-word;
-        font-family: 'Epilogue';
         font-weight: 500;
         font-size: 16px;
         color: #371B34;
@@ -59,22 +93,24 @@
 
         
     }
-    
-    .settings-v-1 .calmado {
-        margin: 0 3.1px 0 4.6px;
-        overflow-wrap: break-word;
-        font-family: 'Epilogue';
-        font-weight: 500;
-        font-size: 12px;
-        color: var(--gray-3, #828282);
-    }
-    
     .settings-v-1 .calm-icon {
         width: 34px;
         height: 32.9px;
         margin: -110% ;
 
     }
+    
+    .settings-v-1 .calmado {
+        margin: 20 px 0 17.4px;
+        overflow-wrap: break-word;
+        font-family: "Releway", sans-serif;
+        font-weight: 500;
+        font-size: 12px;
+        color: var(--gray-3, #828282);
+        margin-left: 15px;
+    }
+    
+ 
     
     .settings-v-1 .happy {
         margin: 0 3.1px 0 4.6px;
@@ -91,7 +127,7 @@
     .settings-v-1 .feliz {
         margin: 20 px 0 17.4px;
         overflow-wrap: break-word;
-        font-family: 'Epilogue';
+        font-family: "Releway", sans-serif;
         font-weight: 500;
         font-size: 12px;
         color: var(--gray-3, #828282);
@@ -126,11 +162,11 @@
     .settings-v-1 .relajado {
         margin: 0 30px 0 17.4px;
         overflow-wrap: break-word;
-        font-family: 'Epilogue';
+        font-family: "Releway", sans-serif;
         font-weight: 500;
         font-size: 12px;
         color: var(--gray-3, #828282);
-        margin-left: 10px;
+        
     }
     
     .settings-v-1 .relax-1 {
@@ -154,7 +190,7 @@
     .settings-v-1 .enojado {
         margin: 0 40px 0 17.4px;
         overflow-wrap: break-word;
-        font-family: 'Epilogue';
+        font-family: "Releway", sans-serif;
         font-weight: 500;
         font-size: 12px;
         color: var(--gray-3, #828282);
@@ -193,15 +229,13 @@
         flex-basis: 60.1px;
         box-sizing: border-box;
         margin-left: 2px;
-        margin-right: 10px;
-    
-
+        margin-right: 10px;  
     }
     
     .settings-v-1 .triste {
         margin: -15px 17px 0 17.4px;
         overflow-wrap: break-word;
-        font-family: 'Epilogue';
+        font-family: "Releway", sans-serif;
         font-weight: 500;
         font-size: 12px;
         color: var(--gray-3, #828282);
@@ -220,8 +254,6 @@
         height: 31.8px;
     }
     
-    
-
     .frame-6 {
         display: flex;
         justify-content: center;
@@ -231,7 +263,7 @@
     
     .settings-v-1 .sanamed {
         overflow-wrap: break-word;
-        font-family: 'Inter';
+        font-family: "Releway", sans-serif;
         font-weight: 700;
         font-size: 32px;
         color: #000000;
@@ -262,7 +294,7 @@
     .settings-v-1 .musica-relajante  a{
         text-align: center;
         overflow-wrap: break-word;
-        font-family: 'Inter';
+        font-family: "Releway", sans-serif;
         font-weight: 700;
         font-size: 13px;
         color: #000000;
@@ -288,7 +320,7 @@
     .settings-v-1 .herramientas-yactividades a {
         text-align: center;
         overflow-wrap: break-word;
-        font-family: 'Inter';
+        font-family: "Releway", sans-serif;
         font-weight: 700;
         font-size: 13px;
         color: #000000;
@@ -311,7 +343,7 @@
     
     .settings-v-1 .terapia a  {
         overflow-wrap: break-word;
-        font-family: 'Inter';
+        font-family: "Releway", sans-serif;
         font-weight: 700;
         font-size: 13px;
         color: #000000;
@@ -325,7 +357,7 @@
     
     .settings-v-1 .calendario a {
         overflow-wrap: break-word;
-        font-family: 'Inter';
+        font-family: "Releway", sans-serif;
         font-weight: 700;
         font-size: 13px;
         color: #000000;
@@ -399,18 +431,7 @@
         height: 80px;
     }
     
-    .settings-v-1 .container {
-        border-radius: 16px;
-        background: #69B9E7;
-        position: relative;
-        margin-bottom: px;
-        display: flex;
-        padding: 15.1px 13.5px 14.2px 13.8px;
-        width: 60.1px;
-        height: 61px;
-        box-sizing: border-box;
-        
-    }
+  
     
     .settings-v-1 .container-1 {
         margin: 0 34px;
@@ -441,18 +462,23 @@
     }
     
     .settings-v-1 .container-4 {
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
         border-radius: 16px;
         background: #AEAFF7;
         position: relative;
-        margin-bottom: 9px;
+        margin-bottom: 6px;
+        margin-left: 10px;
         display: flex;
-        padding: 14.2px 12.6px 14px 13.5px;
+        padding: 15.1px 1.4px 14.2px 13.8px;
         width: 60.1px;
         height: 61px;
         box-sizing: border-box;
+
+        
     }
     
     .settings-v-1 .container-5 {
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
         border-radius: 16px;
         background: rgba(249, 219, 57, 0.84);
         position: relative;
@@ -465,6 +491,7 @@
     }
     
     .settings-v-1 .container-6 {
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
         border-radius: 16px;
         background: #4B8D8C;
         position: relative;
@@ -477,6 +504,7 @@
     }
     
     .settings-v-1 .container-7 {
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
         border-radius: 16px;
         background: #F05454;
         position: relative;
@@ -487,20 +515,7 @@
         height: 61px;
         box-sizing: border-box;
     }
-    
-    .settings-v-1 .label {
-        text-align: center;
-        overflow-wrap: break-word;
-        font-family: var(--button-button-2-font-family, 'Raleway');
-        font-weight: var(--button-button-2-font-weight, 600);
-        font-size: var(--button-button-2-font-size, 16px);
-        line-height: var(--button-button-2-line-height, 1.125);
-        background: linear-gradient(#000000, #000000), linear-gradient(rgba(245, 130, 130, 0.61), rgba(245, 130, 130, 0.61));
-        color: transparent;
-        background-clip: text;
-        -webkit-background-clip: text;
-    }
-    
+   
     .settings-v-1 .container-8 {
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
         border-radius: 16px;

@@ -22,12 +22,14 @@
 
         <form action="/login" method="POST">
             <div class="form-group">
-                <label for="rol" title="Rol">Rol:</label>
-                <select id="rol" name="rol" title="Rol con el que desea ingresar"> <required>
+                <label for="rol" title="Rol"></label>
+                <select id="rol" name="rol" title="Rol con el que desea ingresar" required>
+                    <option value="" disabled selected hidden>Rol</option>
                     <option value="usuario">Usuario</option>
                     <option value="profesional">Profesional</option>
                     <option value="admin">Administrador</option>
                 </select>
+                
             </div>
             <input type="text" class="username" name="correo" placeholder="Correo Electrónico" required title="Ingrese su dirección de correo electrónico">
             <input type="password" class="password" name="contrasena" placeholder="Contraseña" required title="Ingrese su contraseña">

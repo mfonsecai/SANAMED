@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Nombre+de+la+Fuente');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap');
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+    font-family: 'Arial', sans-serif;
+    background-color: #dad7d7;
 }
 
 .login-container {
@@ -12,23 +12,23 @@ body {
     padding: 50px;
     border-radius: 5px;
     text-align: center;
-    font-family: "Releway"; 
+    font-family: 'Raleway', sans-serif;
     color: #8DCB9E;
     font-size: 25px;
 }
 
 h1 {
     text-align: center;
-    font-family: "Releway"; 
+    font-family: 'Raleway', sans-serif;
     color: #8DCB9E;
     font-size: 20px;
 }
 
 h2 {
     text-align: center;
-    font-family: "jomhuria", sans-serif; 
+    font-family: 'jomhuria', sans-serif;
     color: #8DCB9E;
-    text-shadow: 1px 1px 0 #000; 
+    text-shadow: 1px 1px 0 #000;    
     font-size: 40px;
 }
 
@@ -62,15 +62,22 @@ select {
     border: 1px solid #ccc;
     border-radius: 3px;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+}
+select {
+    color: #000000; /* Color del texto del select */
 }
 
+select option[disabled] {
+    color: #000000; /* Color del texto del placeholder */
+}
 button {
     background-color: #8DCB9E;
     font-size: 20px;
     color: #fff;
     border: none;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 button:hover {
@@ -80,10 +87,11 @@ button:hover {
 .forgot-password {
     text-align: center;
     margin-top: 18px;
-    font-family: jomhuria;
+    font-family: 'jomhuria', sans-serif;
     list-style: none;
-    color: green; 
+    color: green;
     text-decoration: none;
+    font-weight: bold; /* Texto en negrilla */
 }
 
 .forgot-password a {
@@ -92,11 +100,12 @@ button:hover {
     color: green;
     text-decoration: none;
     font-size: 20px;
+    font-weight: bold; /* Texto en negrilla */
 }
 
 .username::placeholder,
-.password::placeholder {
-    color: #8DCB9E;
+.password::placeholder ,.form-group{
+    color: #000000;
 }
 
 .logo-container img {
@@ -113,6 +122,7 @@ button:hover {
     color: green;
     text-decoration: none;
     font-size: 20px;
+    font-weight: bold; /* Texto en negrilla */
 }
 
 img {
@@ -122,7 +132,7 @@ img {
 }
 
 ::placeholder {
-    color: #8DCB9E;
+    color: #000000;
 }
 
 .alert {

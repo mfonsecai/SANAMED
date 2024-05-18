@@ -1,8 +1,7 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Nombre+de+la+Fuente');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap');
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     background-color: #dad7d7;
     margin: 0;
     padding: 0;
@@ -15,36 +14,53 @@ body {
     padding: 50px;
     border-radius: 5px;
     text-align: center;
-    font-family: "Releway"; 
+    font-family: 'Raleway', sans-serif;
     color: #8DCB9E;
     font-size: 18px;
 }
 
 h2 {
     text-align: center;
-    text-shadow: 1px 1px 0 #000 ; 
-
+    font-family: 'Raleway', sans-serif;
+    color: #8DCB9E;
+    text-shadow: 1px 1px 0 #000;
+    font-size: 40px;
 }
-
 
 .form-group {
     margin-bottom: 20px;
     text-align: left;
 }
 
-label {
-    display: block;
-    font-weight: bold;
-}
-
 input[type="text"],
 input[type="email"],
 input[type="password"],
 select {
+    display: block;
     width: 100%;
+    margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    color: #000000;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+select {
+    color: #000000;
+    padding: 10px;
+}
+
+select option[disabled] {
+    color: #000000;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder,
+select::placeholder {
+    color: #000000;
 }
 
 .btn {
@@ -56,26 +72,12 @@ select {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 20px;;
+    font-size: 20px;
 }
 
 .btn:hover {
     background-color: green;
 }
-
-p {
-    text-align: center;
-}
-
-p a {
-    color: green;
-    text-decoration: none;
-}
-
-p a:hover {
-    text-decoration: underline;
-}
-
 
 .register-link {
     color: #8DCB9E;
@@ -85,4 +87,37 @@ p a:hover {
 .register-link a {
     color: green;
     text-decoration: none;
+    font-weight: bold;
+}
+
+.alert {
+    background-color: #8DCB9E;
+    color: white;
+    padding: 13px;
+    border: 1px solid #8DCB9E;
+    border-radius: 4px;
+    max-width: 95%;
+    width: 400px;
+    position: relative;
+    margin: 10px auto;
+    font-size: 17px;
+}
+
+.closebtn {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.closebtn:hover {
+    color: black;
+}
+
+@media (max-width: 480px) {
+    .alert {
+        width: 90%;
+        max-width: 90%;
+    }
 }
