@@ -511,3 +511,10 @@ if __name__ == '__main__':
     app.secret_key = "sanamed"
     app.run(debug=True, host="0.0.0.0", port=5000, threaded=True)
 
+
+@app.route('/configuracion', methods=['GET', 'POST'])
+def configuracion():
+    if request.method == 'POST':
+        
+        pass
+    return render_template('configuracion.html')
