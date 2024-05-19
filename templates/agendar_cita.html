@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='saludmental1.ico ') }}">
-
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style7.css') }}">
     <title>Sanamed - Software de Salud Mental</title>
 </head>
@@ -19,6 +17,13 @@
             {{ error }}
         </div>
         {% endif %}
+        {% if success %}
+        <div class="alert success-alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{ success }}
+        </div>
+        {% endif %}
+
             <div class="form-group">
                 <label for="fecha" class="form-label" title="Fecha de su cita">Fecha:</label>
                 <input type="date" id="fecha" name="fecha" required class="form-input" title="Seleccione la fecha de su cita">
@@ -41,13 +46,7 @@
                 </select>
             </div>
         
-            {% if success %}
-            <div class="alert success-alert">
-                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                {{ success }}
-            </div>
-            {% endif %}
-    
+           
             <div class="form-group">
                 <label for="motivo" id="motivo-label" title="Motivo de su cita">Motivo:</label>
                 <textarea id="motivo" name="motivo" rows="7" cols="30" required class="form-textarea" placeholder="Describa el motivo de la cita" title="Motivo de la cita"></textarea>
