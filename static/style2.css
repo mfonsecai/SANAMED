@@ -603,6 +603,7 @@ body {
 .container-1 a {
     flex: 1;
     text-align: center;
+    margin-top: 80px;
 }
 
 
