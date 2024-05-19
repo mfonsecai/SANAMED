@@ -35,24 +35,21 @@
                         </tbody>
                     </table>
                 {% else %}
-                    
                     <p>{{ mensaje }}</p>
                 {% endif %}
             </div>
         </div>
         <div class="container-1">
-            <div class="gear-setting-icon-clipart-1" title="Ajustes">
-            </div>
             <div class="config">
-                <a href=""><img src="static/556-5567171_gear-setting-icon-clipart 1.png" alt="" title="Ajustes"></a>
+                <a href="#" title="Ajustes"><img src="static/556-5567171_gear-setting-icon-clipart 1.png" alt="Ajustes"></a>
             </div>
-            <div class="download-20" title="Cerrar Sesión">
-                <a href="{{ url_for('index') }}"><img src="static/iconmonstr-log-out-17-240.png" alt="Icono de Cerrar Sesión"></a>
+            <div class="casa">
+                <a href="{{ url_for('user_home') }}" title="Inicio"><img src="static/25694 1.png" alt="Inicio"></a>
             </div>
-            <div class="casa" title="Inicio">
-                <a href="{{ url_for('user_home') }}"><img src="static/25694 1.png" alt="Icono de Inicio"></a>
+            <div class="download-20">
+                <a href="{{ url_for('index') }}" title="Cerrar Sesión"><img src="static/iconmonstr-log-out-17-240.png" alt="Cerrar Sesión"></a>
             </div>
         </div>
-    </div>
+    </body>
 </body>
 </html>

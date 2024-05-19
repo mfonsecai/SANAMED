@@ -1,12 +1,7 @@
-/* Estilos generales */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    margin: 0;
-    padding: 0;
+    background-color: #dad7d7;
 }
-
-/* Estilos para el contenedor principal */
 .container {
     width: 340px;
     margin: 100px auto;
@@ -17,13 +12,12 @@ body {
     text-align: center;
     font-family: "Releway", sans-serif;
     color: #000000;
-    font-size: 23px;
+    font-size: 25px;
     position: relative;
 }
 .container h1 {
     color: #8DCB9E; /* Color del texto dentro del contenedor */
 }
-
 
 .appointment-form {
     max-width: 500px;
@@ -35,8 +29,6 @@ body {
     margin-top: 20px;
     overflow: auto; /* Agrega una barra de desplazamiento si el contenido excede el tamaño del contenedor */
 }
-
-
 
 
 .appointment-form table {
@@ -59,30 +51,6 @@ body {
 form {
     display: inline;
 }
-
-.styled-input {
-    width: calc(100% - 20px);
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    font-size: 16px;
-}
-
-.styled-button {
-    padding: 10px 20px;
-    background-color: #8DCB9E;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: -10px;
-}
-
-.styled-button:hover {
-    background-color: green;
-}
 .container-1 {
     display: flex;
     justify-content: center;
@@ -101,7 +69,7 @@ form {
     height: 50px;
     cursor: pointer;
     transition: transform 0.3s ease;
-    margin-top: 110px;
+    margin-top: 90px;
 }
 
 .config img:hover, .casa img:hover, .download-20 img:hover {
