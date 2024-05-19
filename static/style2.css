@@ -568,3 +568,8 @@ body {
 .config img:hover, .casa img:hover, .download-20 img:hover {
     transform: scale(1.1);
 }
+
+
+.container-1 a img {
+    margin-top: 140px; /* Ajusta este valor según lo necesites */
+}
