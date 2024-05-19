@@ -1,6 +1,6 @@
 import re
 from datetime import datetime,date
-from flask import Flask, render_template, request, session, redirect, url_for, jsonify
+from flask import Flask, render_template, request, session, redirect, url_for, jsonify,flash
 from flask_mysqldb import MySQL
 import random
 
@@ -324,6 +324,110 @@ def consultas_dia():
             mensaje = "No hay citas registradas para este día."
             return render_template('calendario.html', mensaje=mensaje)
         return render_template('consultas.html', fecha_seleccionada=fecha_seleccionada, consultas=consultas, obtener_nombre_profesional=obtener_nombre_profesional, obtener_especialidad_profesional=obtener_especialidad_profesional)
+@app.route('/profesionales')
+def listar_profesionales():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT id_profesional, nombre, especialidad FROM Profesionales")
+    profesionales = cur.fetchall()
+    cur.close()
+    return render_template('lista_profesionales.html', profesionales=profesionales)
+
+@app.route('/agregar_profesional', methods=["GET", "POST"])
+def agregar_profesional():
+    if request.method == "POST":
+        nombre = request.form['nombre']
+        especialidad = request.form['especialidad']
+        correo = request.form['correo']
+        contrasena = request.form['contrasena']
+
+        # Validación de la contraseña
+        if not validate_password(contrasena):
+            error = "La contraseña debe tener al menos 8 caracteres, incluyendo letras, números y caracteres especiales."
+            return render_template('agregar_profesional.html', error=error)
+
+        cur = mysql.connection.cursor()
+        try:
+            cur.execute("INSERT INTO Profesionales (nombre, especialidad, correo, contrasena) VALUES (%s, %s, %s, %s)",
+                        (nombre, especialidad, correo, contrasena))
+            mysql.connection.commit()
+        except Exception as e:
+            mysql.connection.rollback()
+            error = "Error al agregar profesional: " + str(e)
+            return render_template('agregar_profesional.html', error=error)
+        finally:
+            cur.close()
+        return redirect(url_for('listar_profesionales'))
+    return render_template('agregar_profesional.html')
+
+@app.route('/eliminar_profesional/<int:id>', methods=["POST"])
+def eliminar_profesional(id):
+    cur = mysql.connection.cursor()
+    try:
+        cur.execute("DELETE FROM Profesionales WHERE id_profesional=%s", (id,))
+        mysql.connection.commit()
+    except Exception as e:
+        mysql.connection.rollback()
+        error = "Error al eliminar profesional: " + str(e)
+        flash(error)
+    finally:
+        cur.close()
+    return redirect(url_for('listar_profesionales'))
+@app.route('/usuarios')
+def listar_usuarios():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT id_usuario, numero_documento, correo FROM Usuarios")
+    usuarios = cur.fetchall()  # Cambio de nombre de la variable para reflejar que son usuarios, no profesionales
+    cur.close()
+    return render_template('lista_usuarios.html', usuarios=usuarios)  # Cambio de la plantilla a lista_usuarios.html
+
+@app.route('/eliminar_usuario/<int:id>', methods=["POST"])
+def eliminar_usuario(id):
+    cur = mysql.connection.cursor()
+    try:
+        cur.execute("DELETE FROM Usuarios WHERE id_usuario=%s", (id,))
+        mysql.connection.commit()
+    except Exception as e:
+        mysql.connection.rollback()
+        error = "Error al eliminar usuario: " + str(e)
+        flash(error)
+    finally:
+        cur.close()
+    return redirect(url_for('listar_usuarios'))
+@app.route('/citas_agendadas')
+def listar_citas():
+    cur = mysql.connection.cursor()
+    
+    query = """
+    SELECT 
+        u.numero_documento, 
+        p.nombre AS nombre_profesional, 
+        c.fecha_consulta, 
+        c.hora_consulta, 
+        c.motivo,
+        c.id_consulta
+    FROM 
+        Consultas c
+    JOIN 
+        Usuarios u ON c.id_usuario = u.id_usuario
+    LEFT JOIN 
+        Profesionales p ON c.id_profesional = p.id_profesional;
+    """
+    
+    cur.execute(query)
+    citas = cur.fetchall()
+    cur.close()
+    
+    return render_template('lista_consultas.html', citas=citas)
+
+@app.route('/eliminar_cita/<int:id>', methods=['POST'])
+def eliminar_cita(id):
+    cur = mysql.connection.cursor()
+    cur.execute("DELETE FROM Consultas WHERE id_consulta = %s", (id,))
+    mysql.connection.commit()
+    cur.close()
+    return redirect(url_for('listar_citas'))
+
+
 if __name__ == '__main__':
     app.secret_key = "sanamed"
     app.run(debug=True, host="0.0.0.0", port=5000, threaded=True)
