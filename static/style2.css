@@ -552,7 +552,6 @@ body {
     width: 45px;
     height: 50px;
     cursor: pointer;
-    transition: transform 0.3s ease;
 }
 
 .config img:hover, .casa img:hover, .download-20 img:hover {
@@ -608,12 +607,3 @@ body {
 
 
 
-@media (max-width: 600px) {
-    .container-1 {
-        padding: 5px 0; /* Ajusta el padding para pantallas más pequeñas */
-    }
-
-    .container-1 a img {
-        transform: translateY(5px); /* Ajusta la posición para pantallas más pequeñas */
-    }
-}
