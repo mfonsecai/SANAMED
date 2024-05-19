@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnósticos y Tratamientos</title>
+</head>
+<body>
+    <h1>Diagnósticos y Tratamientos</h1>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID Consulta</th>
+                <th>Número de Documento</th>
+                <th>Fecha Consulta</th>
+                <th>Hora Consulta</th>
+                <th>Motivo</th>
+                <th>Diagnóstico</th>
+                <th>Tratamiento</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for consulta in consultas %}
+                <tr>
+                    <td>{{ consulta.id_consulta }}</td>
+                    <td>{{ consulta.numero_documento }}</td>
+                    <td>{{ consulta.fecha_consulta }}</td>
+                    <td>{{ consulta.hora_consulta }}</td>
+                    <td>{{ consulta.motivo }}</td>
+                    <td>
+                        <form action="{{ url_for('editar_diagnostico_tratamiento', id_consulta=consulta.id_consulta) }}" method="post">
+                            <input type="text" name="diagnostico" value="{{ consulta.diagnostico }}">
+                    </td>
+                    <td>
+                            <input type="text" name="tratamiento" value="{{ consulta.tratamiento }}">
+                    </td>
+                    <td>
+                            <button type="submit">Guardar</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

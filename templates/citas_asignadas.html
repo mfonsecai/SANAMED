@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style12.css') }}">
+    <title>Citas Asignadas - Sanamed</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body style="font-family: 'Raleway', sans-serif;">
+    <div class="container">
+        <h1>Mis Citas Asignadas</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre Paciente</th>
+                    <th>Número Documento</th>
+                    <th>Correo Paciente</th>
+                    <th>Fecha Consulta</th>
+                    <th>Hora Consulta</th>
+                    <th>Motivo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cita in citas %}
+                <tr>
+                    <td>{{ cita[1] }}</td>
+                    <td>{{ cita[2] }}</td>
+                    <td>{{ cita[3] }}</td>
+                    <td>{{ cita[4] }}</td>
+                    <td>{{ cita[5] }}</td>
+                    <td>{{ cita[6] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

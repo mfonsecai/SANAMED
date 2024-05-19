@@ -426,8 +426,87 @@ def eliminar_cita(id):
     mysql.connection.commit()
     cur.close()
     return redirect(url_for('listar_citas'))
+@app.route('/pacientes')
+def pacientes():
+    if 'logged_in' in session and session['logged_in']:
+        id_profesional = obtener_id_usuario_actual()
+        
+        cur = mysql.connection.cursor()
+        cur.execute("""
+            SELECT  u.nombre,  u.numero_documento, u.celular, u.correo
+            FROM Usuarios u
+            JOIN profesionales_usuarios pu ON u.id_usuario = pu.id_usuario
+            WHERE pu.id_profesional = %s
+        """, (id_profesional,))
+        
+        pacientes = cur.fetchall()
+        cur.close()
+        
+        return render_template('lista_pacientes.html', pacientes=pacientes)
+    else:
+        return redirect(url_for('index'))
 
+@app.route('/citas_asignadas')
+def citas_asignadas():
+    if 'logged_in' in session and session['logged_in']:
+        id_profesional = obtener_id_usuario_actual()
+        
+        cur = mysql.connection.cursor()
+        cur.execute("""
+            SELECT c.id_consulta, u.nombre AS nombre_paciente, u.numero_documento, u.correo AS correo_paciente, c.fecha_consulta, c.hora_consulta, c.motivo
+            FROM Consultas c
+            JOIN Usuarios u ON c.id_usuario = u.id_usuario
+            WHERE c.id_profesional = %s
+        """, (id_profesional,))
+        
+        citas = cur.fetchall()
+        cur.close()
+        
+        return render_template('citas_asignadas.html', citas=citas)
+    else:
+        return redirect(url_for('index'))
+class Consulta:
+    def __init__(self, id_consulta, numero_documento, fecha_consulta, hora_consulta, motivo, diagnostico, tratamiento):
+        self.id_consulta = id_consulta
+        self.numero_documento = numero_documento
+        self.fecha_consulta = fecha_consulta
+        self.hora_consulta = hora_consulta
+        self.motivo = motivo
+        self.diagnostico = diagnostico
+        self.tratamiento = tratamiento
 
+@app.route('/diagnosticos_tratamientos')
+def diagnosticos_tratamientos():
+    cur = mysql.connection.cursor()
+    cur.execute("""
+        SELECT c.id_consulta, u.numero_documento, c.fecha_consulta, c.hora_consulta, c.motivo, c.diagnostico, c.tratamiento 
+        FROM Consultas c
+        JOIN Usuarios u ON c.id_usuario = u.id_usuario
+        WHERE c.fecha_consulta < %s
+    """, [datetime.now()])
+    consultas = cur.fetchall()
+    cur.close()
+    
+    consultas_obj = [Consulta(*consulta) for consulta in consultas]
+    
+    return render_template('diagnosticos_tratamientos.html', consultas=consultas_obj)
+
+@app.route('/editar_diagnostico_tratamiento/<int:id_consulta>', methods=['POST'])
+def editar_diagnostico_tratamiento(id_consulta):
+    diagnostico = request.form['diagnostico']
+    tratamiento = request.form['tratamiento']
+    
+    cur = mysql.connection.cursor()
+    cur.execute("""
+        UPDATE Consultas
+        SET diagnostico = %s, tratamiento = %s
+        WHERE id_consulta = %s
+    """, (diagnostico, tratamiento, id_consulta))
+    mysql.connection.commit()
+    cur.close()
+    
+    flash('El diagnóstico y tratamiento se han actualizado correctamente.')
+    return redirect(url_for('diagnosticos_tratamientos'))
 if __name__ == '__main__':
     app.secret_key = "sanamed"
     app.run(debug=True, host="0.0.0.0", port=5000, threaded=True)
