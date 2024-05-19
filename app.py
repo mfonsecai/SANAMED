@@ -515,6 +515,6 @@ if __name__ == '__main__':
 @app.route('/configuracion', methods=['GET', 'POST'])
 def configuracion():
     if request.method == 'POST':
-        
+        # Manejar los datos del formulario aquí
         pass
     return render_template('configuracion.html')
