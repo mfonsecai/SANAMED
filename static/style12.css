@@ -4,16 +4,7 @@ body {
     background-color: #dad7d7;
 }
 
-.settings-v-1 {
-    width: 400px;
-    margin: 100px auto;
-    height: 820px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    font-family: "Releway", sans-serif;
-}
+
 
 .frame-6 {
     display: flex;
@@ -115,3 +106,71 @@ body {
 }
 
 
+        
+.settings-v-1  {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    height: 820px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    font-family: "Raleway", sans-serif; /* Asegúrate de que el nombre de la fuente esté correctamente escrito */
+  }
+  
+  
+  .container-1 {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0; /* Espaciado vertical opcional */
+  }
+  
+  .container-1 a {
+    flex: 1;
+    text-align: center;
+    margin-top: 80px;
+  }
+  
+  
+  
+  @media (max-width: 600px) {
+    .container-1 {
+        padding: 5px 0; /* Ajusta el padding para pantallas más pequeñas */
+    }
+  
+    .container-1 a img {
+        transform: translateY(5px); /* Ajusta la posición para pantallas más pequeñas */
+    }
+  }
+  
+  
+  body {
+    width: 45px;
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  
+  
+  
+  
+  
+  
+  @media (max-width: 600px) {
+    .container-1 {
+        padding: 5px 0; /* Ajusta el padding para pantallas más pequeñas */
+    }
+  
+    .container-1 a img {
+        transform: translateY(5px); /* Ajusta la posición para pantallas más pequeñas */
+    }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
