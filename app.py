@@ -517,6 +517,14 @@ def editar_diagnostico_tratamiento(id_consulta):
 def configuracion():
     return render_template('configuracion.html')
 
+@app.route('/sobre_nosotros')
+def sobre_nosotros():
+    return render_template('sobre_nosotros.html')
+
+@app.route('/preguntas_frecuentes')
+def preguntas_frecuentes():
+    return render_template('preguntas_frecuentes.html') 
+
 if __name__ == '__main__':
     app.secret_key = "sanamed"
     app.run(debug=True, host="0.0.0.0", port=5000, threaded=True)
