@@ -152,7 +152,7 @@ input:focus, select:focus {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -200px;
+    margin-top: -10px;
 }
 
 .config img, .casa img, .download-20 img {

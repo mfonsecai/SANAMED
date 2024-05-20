@@ -143,6 +143,7 @@ body {
 #motivo {
     height: 70px;
     resize: none;
+    font-family: "Releway", sans-serif;
 }
 
 #motivo-label {
