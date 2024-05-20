@@ -19,30 +19,30 @@
     </div>
 
     <div class="imagen14">
-        <img src="static/usuario.png" alt="Imagen 9" title="Administrador">
+        <img src="static/usuario.png" alt="Imagen 9" title="configuracion">
     </div>
     
     <div class="frame-13-container">
         <div class="frame-13">
             <div class="login-button">
-                <span class="label" title="Chatea con bot">
-                    <a href="#">Editar perfil</a>
-                </span>
-            </div>
-        </div>
-
-        <div class="frame-13">
-            <div class="login-button">
                 <span class="label" title="Editar Perfil">
-                    <a href="#">Sobre nosotros</a>
+                    <a href="#">Editar Perfil</a>
                 </span>
             </div>
         </div>
 
         <div class="frame-13">
             <div class="login-button">
-                <span class="label" title="Citas agendadas">
-                    <a href="#">Preguntas Frecuentes</a>
+                <span class="label" title="Sobre Nosotros">
+                    <a href="{{ url_for('sobre_nosotros') }}">Sobre Nosotros</a>
+                </span>
+            </div>
+        </div>
+
+        <div class="frame-13">
+            <div class="login-button">
+                <span class="label" title="Preguntas Frecuentes">
+                    <a href="{{ url_for('preguntas_frecuentes') }}">Preguntas Frecuentes</a>
                 </span>
             </div>
         </div>
