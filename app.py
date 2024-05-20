@@ -507,6 +507,7 @@ def editar_diagnostico_tratamiento(id_consulta):
     
     flash('El diagnóstico y tratamiento se han actualizado correctamente.')
     return redirect(url_for('diagnosticos_tratamientos'))
+
 @app.route('/configuracion')
 def configuracion():
     return render_template('configuracion.html')

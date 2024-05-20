@@ -610,3 +610,32 @@ body {
         transform: translateY(5px); /* Ajusta la posición para pantallas más pequeñas */
     }
 }
+
+
+ body {
+    width: 45px;
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+
+
+
+
+
+
+@media (max-width: 600px) {
+    .container-1 {
+        padding: 5px 0; /* Ajusta el padding para pantallas más pequeñas */
+    }
+
+    .container-1 a img {
+        transform: translateY(5px); /* Ajusta la posición para pantallas más pequeñas */
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
