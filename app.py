@@ -474,23 +474,28 @@ class Consulta:
         self.motivo = motivo
         self.diagnostico = diagnostico
         self.tratamiento = tratamiento
-
 @app.route('/diagnosticos_tratamientos')
 def diagnosticos_tratamientos():
-    cur = mysql.connection.cursor()
-    cur.execute("""
-        SELECT c.id_consulta, u.numero_documento, c.fecha_consulta, c.hora_consulta, c.motivo, c.diagnostico, c.tratamiento 
-        FROM Consultas c
-        JOIN Usuarios u ON c.id_usuario = u.id_usuario
-        WHERE c.fecha_consulta < %s
-    """, [datetime.now()])
-    consultas = cur.fetchall()
-    cur.close()
-    
-    consultas_obj = [Consulta(*consulta) for consulta in consultas]
-    
-    return render_template('diagnosticos_tratamientos.html', consultas=consultas_obj)
+    if 'logged_in' in session and session['logged_in']:
+        id_profesional = obtener_id_usuario_actual()  # Obtener el ID del profesional logueado
 
+        cur = mysql.connection.cursor()
+        cur.execute("""
+    SELECT DISTINCT c.id_consulta, u.numero_documento, c.fecha_consulta, c.hora_consulta, c.motivo, c.diagnostico, c.tratamiento 
+    FROM Consultas c
+    JOIN Usuarios u ON c.id_usuario = u.id_usuario
+    JOIN Profesionales_Usuarios pu ON c.id_profesional = pu.id_profesional
+    WHERE c.fecha_consulta < %s AND pu.id_profesional = %s
+""", (datetime.now(), id_profesional))
+
+        consultas = cur.fetchall()
+        cur.close()
+
+        consultas_obj = [Consulta(*consulta) for consulta in consultas]
+
+        return render_template('diagnosticos_tratamientos.html', consultas=consultas_obj)
+    else:
+        return redirect(url_for('index'))
 @app.route('/editar_diagnostico_tratamiento/<int:id_consulta>', methods=['POST'])
 def editar_diagnostico_tratamiento(id_consulta):
     diagnostico = request.form['diagnostico']

@@ -35,7 +35,7 @@ body {
     width: 90%; /* Asegura que la tabla ocupe todo el ancho del formulario */
     max-height: 100%; /* Evita que la tabla exceda la altura del contenedor */
     border-collapse: collapse; /* Colapsa los bordes de la tabla para que parezca una cuadrícula */
-    font-size: 8px; /* Reduce el tamaño de la letra para que toda la tabla sea visible */
+    font-size: 10px; /* Reduce el tamaño de la letra para que toda la tabla sea visible */
     
 }
 
@@ -59,17 +59,17 @@ form {
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-bottom: 10px;
-    font-size: 16px;
+    font-size: 8px;
 }
 
 .styled-button {
-    padding: 10px 20px;
+    padding: 5px 20px;
     background-color: #8DCB9E;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 12px;
     margin-top: -10px;
 }
 
