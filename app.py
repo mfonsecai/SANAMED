@@ -507,11 +507,11 @@ def editar_diagnostico_tratamiento(id_consulta):
     
     flash('El diagnóstico y tratamiento se han actualizado correctamente.')
     return redirect(url_for('diagnosticos_tratamientos'))
+@app.route('/configuracion')
+def configuracion():
+    return render_template('configuracion.html')
+
 if __name__ == '__main__':
     app.secret_key = "sanamed"
     app.run(debug=True, host="0.0.0.0", port=5000, threaded=True)
 
-
-@app.route('/user_home1')
-def user_home1():
-    return render_template('user_home1.html')
