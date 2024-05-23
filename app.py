@@ -149,9 +149,7 @@ def register():
 
         # Validar la contraseña
         if not validate_password(contrasena):
-            flash("La contraseña debe tener al menos 8 caracteres, una mayúscula y un carácter especial.", "error")
-            return render_template('register.html')
-
+            return render_template('register.html', error="La contraseña debe tener al menos 8 caracteres, una mayúscula y un carácter especial.")
 
         # Verificar si el correo electrónico ya está registrado
         cur = mysql.connection.cursor()
@@ -161,9 +159,7 @@ def register():
 
 
         if existing_user:
-            flash("El correo electrónico ya está registrado. Por favor, utiliza otro correo electrónico", "error")
-            return render_template('register.html')
-
+            return render_template('register.html', error="El correo electrónico ya está registrado. Por favor, utiliza otro correo electrónico")
 
         # Insertar el nuevo usuario en la base de datos
         cur = mysql.connection.cursor()
@@ -182,6 +178,7 @@ def register():
         finally:
             cur.close()
 
+        return render_template('index.html')
 
     return render_template('register.html')
 
@@ -305,13 +302,15 @@ def agendar_cita():
     else:
         return redirect(url_for('index'))
 
-
+<<<<<<< HEAD
+@app.route('/consultar_citas', methods=["GET"])
+def consultar_citas():
+=======
     return render_template('agendar_cita.html', profesionales=obtener_profesionales_disponibles())
 @app.route('/calendario')
 def mostrar_calendario():
     # Aquí debes implementar la lógica para mostrar el calendario
     return render_template('calendario.html')
-
 
 def obtener_emociones_por_fecha(fecha):
     cur = mysql.connection.cursor()
@@ -334,7 +333,6 @@ def obtener_especialidad_profesional(id_profesional):
     cur.close()
     return especialidad_profesional
 
-
 def obtener_consultas_por_fecha(fecha):
     cur = mysql.connection.cursor()
     query = "SELECT id_usuario, id_profesional, fecha_consulta, hora_consulta, motivo FROM Consultas WHERE DATE(fecha_consulta) = %s"
@@ -342,7 +340,6 @@ def obtener_consultas_por_fecha(fecha):
     consultas = cur.fetchall()
     cur.close()
     return consultas
-
 
 def obtener_nombre_profesional(id_profesional):
     cur = mysql.connection.cursor()
@@ -359,7 +356,6 @@ def seleccionar_dia():
             mensaje = "No hay emociones registradas para este día."
             return render_template('calendario.html', mensaje=mensaje)
         return render_template('emociones.html', fecha_seleccionada=fecha_seleccionada, emociones_horas=zip(emociones, horas))
-
 
 @app.route('/consultas_dia', methods=["GET", 'POST'])
 def consultas_dia():
@@ -378,7 +374,6 @@ def listar_profesionales():
     cur.close()
     return render_template('lista_profesionales.html', profesionales=profesionales)
 
-
 @app.route('/agregar_profesional', methods=["GET", "POST"])
 def agregar_profesional():
     if request.method == "POST":
@@ -387,12 +382,10 @@ def agregar_profesional():
         correo = request.form['correo']
         contrasena = request.form['contrasena']
 
-
         # Validación de la contraseña
         if not validate_password(contrasena):
             error = "La contraseña debe tener al menos 8 caracteres, incluyendo letras, números y caracteres especiales."
             return render_template('agregar_profesional.html', error=error)
-
 
         cur = mysql.connection.cursor()
         try:
@@ -408,25 +401,19 @@ def agregar_profesional():
         return redirect(url_for('listar_profesionales'))
     return render_template('agregar_profesional.html')
 
-
 @app.route('/eliminar_profesional/<int:id>', methods=["POST"])
 def eliminar_profesional(id):
     cur = mysql.connection.cursor()
     try:
         cur.execute("DELETE FROM Profesionales WHERE id_profesional=%s", (id,))
         mysql.connection.commit()
-        flash("Profesional eliminado correctamente", "success")
     except Exception as e:
         mysql.connection.rollback()
-        error = "Error al eliminar profesional "
-        flash(error, "error")
+        error = "Error al eliminar profesional: " + str(e)
+        flash(error)
     finally:
         cur.close()
-
-
     return redirect(url_for('listar_profesionales'))
-
-
 @app.route('/usuarios')
 def listar_usuarios():
     cur = mysql.connection.cursor()
@@ -434,83 +421,56 @@ def listar_usuarios():
     usuarios = cur.fetchall()  # Cambio de nombre de la variable para reflejar que son usuarios, no profesionales
     cur.close()
     return render_template('lista_usuarios.html', usuarios=usuarios)  # Cambio de la plantilla a lista_usuarios.html
+
 @app.route('/eliminar_usuario/<int:id>', methods=["POST"])
 def eliminar_usuario(id):
     cur = mysql.connection.cursor()
     try:
         cur.execute("DELETE FROM Usuarios WHERE id_usuario=%s", (id,))
         mysql.connection.commit()
-        flash('Usuario eliminado correctamente', 'success')  # Mensaje de éxito
     except Exception as e:
         mysql.connection.rollback()
-        error = "Error al eliminar usuario "
-        flash(error, 'error')  # Mensaje de error
+        error = "Error al eliminar usuario: " + str(e)
+        flash(error)
     finally:
         cur.close()
     return redirect(url_for('listar_usuarios'))
-
-
 @app.route('/citas_agendadas')
 def listar_citas():
     cur = mysql.connection.cursor()
-   
+    
     query = """
-    SELECT
-        u.numero_documento,
-        p.nombre AS nombre_profesional,
-        c.fecha_consulta,
-        c.hora_consulta,
+    SELECT 
+        u.numero_documento, 
+        p.nombre AS nombre_profesional, 
+        c.fecha_consulta, 
+        c.hora_consulta, 
         c.motivo,
         c.id_consulta
-    FROM
+    FROM 
         Consultas c
-    JOIN
+    JOIN 
         Usuarios u ON c.id_usuario = u.id_usuario
-    LEFT JOIN
+    LEFT JOIN 
         Profesionales p ON c.id_profesional = p.id_profesional;
     """
-   
+    
     cur.execute(query)
     citas = cur.fetchall()
     cur.close()
-   
+    
     return render_template('lista_consultas.html', citas=citas)
+
 @app.route('/eliminar_cita/<int:id>', methods=['POST'])
 def eliminar_cita(id):
     cur = mysql.connection.cursor()
     cur.execute("DELETE FROM Consultas WHERE id_consulta = %s", (id,))
     mysql.connection.commit()
     cur.close()
-   
-    # Emitir un mensaje flash después de eliminar la cita con éxito
-    flash('La cita ha sido eliminada correctamente.', 'success')
-   
     return redirect(url_for('listar_citas'))
-
-
 @app.route('/pacientes')
 def pacientes():
-    if 'logged_in' in session and session['logged_in']:
-        id_profesional = obtener_id_usuario_actual()
-       
-        cur = mysql.connection.cursor()
-        cur.execute("""
-            SELECT  u.nombre,  u.numero_documento, u.celular, u.correo
-            FROM Usuarios u
-            JOIN profesionales_usuarios pu ON u.id_usuario = pu.id_usuario
-            WHERE pu.id_profesional = %s
-        """, (id_profesional,))
-       
-        pacientes = cur.fetchall()
-        cur.close()
-       
-        return render_template('lista_pacientes.html', pacientes=pacientes)
-    else:
-        return redirect(url_for('index'))
-
-
-@app.route('/citas_asignadas')
-def citas_asignadas():
+>>>>>>> parent of 8d26f88 (aaa)
     if 'logged_in' in session and session['logged_in']:
         id_profesional = obtener_id_usuario_actual()
        
@@ -524,7 +484,10 @@ def citas_asignadas():
        
         citas = cur.fetchall()
         cur.close()
-       
+<<<<<<< HEAD
+        return render_template('consultar_citas.html', citas=citas)
+=======
+        
         return render_template('citas_asignadas.html', citas=citas)
     else:
         return redirect(url_for('index'))
@@ -537,32 +500,24 @@ class Consulta:
         self.motivo = motivo
         self.diagnostico = diagnostico
         self.tratamiento = tratamiento
-@app.route('/diagnosticos_tratamientos', methods=['GET', 'POST'])
+@app.route('/diagnosticos_tratamientos')
 def diagnosticos_tratamientos():
     if 'logged_in' in session and session['logged_in']:
         id_profesional = obtener_id_usuario_actual()  # Obtener el ID del profesional logueado
 
-
         cur = mysql.connection.cursor()
         cur.execute("""
-    SELECT DISTINCT c.id_consulta, u.numero_documento, c.fecha_consulta, c.hora_consulta, c.motivo, c.diagnostico, c.tratamiento
+    SELECT DISTINCT c.id_consulta, u.numero_documento, c.fecha_consulta, c.hora_consulta, c.motivo, c.diagnostico, c.tratamiento 
     FROM Consultas c
     JOIN Usuarios u ON c.id_usuario = u.id_usuario
     JOIN Profesionales_Usuarios pu ON c.id_profesional = pu.id_profesional
     WHERE c.fecha_consulta < %s AND pu.id_profesional = %s
 """, (datetime.now(), id_profesional))
 
-
         consultas = cur.fetchall()
         cur.close()
 
-
         consultas_obj = [Consulta(*consulta) for consulta in consultas]
-
-
-        if request.method == 'POST':
-            flash('Actualizado correctamente', 'success')
-
 
         return render_template('diagnosticos_tratamientos.html', consultas=consultas_obj)
     else:
@@ -571,7 +526,7 @@ def diagnosticos_tratamientos():
 def editar_diagnostico_tratamiento(id_consulta):
     diagnostico = request.form['diagnostico']
     tratamiento = request.form['tratamiento']
-   
+    
     cur = mysql.connection.cursor()
     cur.execute("""
         UPDATE Consultas
@@ -580,10 +535,9 @@ def editar_diagnostico_tratamiento(id_consulta):
     """, (diagnostico, tratamiento, id_consulta))
     mysql.connection.commit()
     cur.close()
-   
+    
     flash('El diagnóstico y tratamiento se han actualizado correctamente.')
     return redirect(url_for('diagnosticos_tratamientos'))
-
 
 @app.route('/configuracion')
 def configuracion():
@@ -594,28 +548,28 @@ def editar_perfil():
         id_usuario = obtener_id_usuario_actual()
         cur = mysql.connection.cursor()
 
-
         if request.method == 'POST':
             nombre = request.form['nombre']
             numero_documento = request.form['numero_documento']
             celular = request.form['celular']
             correo = request.form['correo']
 
-
             cur.execute("""
-                UPDATE Usuarios
-                SET nombre = %s, numero_documento = %s, celular = %s, correo = %s
+                UPDATE Usuarios 
+                SET nombre = %s, numero_documento = %s, celular = %s, correo = %s 
                 WHERE id_usuario = %s
             """, (nombre, numero_documento, celular, correo, id_usuario))
             mysql.connection.commit()
             cur.close()
-            return redirect(url_for('configuracion'))
-
+            
+            flash('Perfil guardado con éxito')  # Añade el mensaje flash
+            return redirect(url_for('editar_perfil'))
 
         cur.execute("SELECT nombre, numero_documento, celular, correo FROM Usuarios WHERE id_usuario = %s", (id_usuario,))
         usuario = cur.fetchone()
         cur.close()
         return render_template('editar_perfil.html', usuario=usuario)
+>>>>>>> parent of 8d26f88 (aaa)
     else:
         return redirect(url_for('index'))
 
