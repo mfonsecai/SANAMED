@@ -71,10 +71,19 @@ class Game {
     onClickOnBlock(blockIdx) {
         if (this.moveBlock(blockIdx)) {
             if (this.checkPuzzleSolved()) {
-                setTimeout(() => alert("¡Rompecabezas resuelto!"), 600);
+                // Mostrar el contenedor del mensaje
+                document.getElementById("message_container").style.display = "flex";
+                // Agregar evento click al botón "Volver a Jugar"
+                document.getElementById("play_again_button").addEventListener("click", () => {
+                    // Redirigir al usuario a la página principal
+                    window.location.href = "/rompecabezas";
+                });
             }
         }
     }
+    
+    
+s    
 
     checkPuzzleSolved() {
         for (let i = 0; i < this.indexes.length; i++) {
