@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style16.css') }}">
     <title>Lista de Citas Agendadas</title>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='saludmental1.ico ') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='saludmental1.ico') }}">
     <style>
         .confirmation-dialog {
             display: none;
@@ -65,13 +65,13 @@
     </div>
     <div class="container-1">
         <div class="config">
-            <a href="#" title="Ajustes"><img src="static/556-5567171_gear-setting-icon-clipart 1.png" alt="Ajustes"></a>
+            <a href="#" title="Ajustes"><img src="{{ url_for('static', filename='556-5567171_gear-setting-icon-clipart 1.png') }}" alt="Ajustes"></a>
         </div>
         <div class="casa">
-            <a href="{{ url_for('admin_home') }}" title="Inicio"><img src="static/25694 1.png" alt="Inicio"></a>
+            <a href="{{ url_for('admin_home') }}" title="Inicio"><img src="{{ url_for('static', filename='25694 1.png') }}" alt="Inicio"></a>
         </div>
         <div class="download-20">
-            <a href="{{ url_for('index') }}" title="Cerrar Sesión"><img src="static/iconmonstr-log-out-17-240.png" alt="Cerrar Sesión"></a>
+            <a href="{{ url_for('index') }}" title="Cerrar Sesión"><img src="{{ url_for('static', filename='iconmonstr-log-out-17-240.png') }}" alt="Cerrar Sesión"></a>
         </div>
     </div>
 
@@ -80,7 +80,6 @@
         <button onclick="cancelDelete()" class="form-submit">Cancelar</button>
         <button onclick="confirmDelete()" class="form-submit">Aceptar</button>
     </div>
-
 
     <script>
         var appointmentIdToDelete;

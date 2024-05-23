@@ -1,13 +1,13 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #dad7d7;
+    background-color: #ffffff;
     margin: 0;
     padding: 0;
 }
 
 .container {
     width: 340px;
-    margin: 100px auto;
+    margin: 10px auto;
     height: 760px;
     background-color: #fff;
     padding: 50px;
@@ -132,3 +132,13 @@ button:hover {
 .config img:hover, .casa img:hover, .download-20 img:hover {
     transform: scale(1.1);
 }
+
+@media (max-width: 480px) {
+    body {
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden; /* Previene el desplazamiento */
+    } }
+
+  

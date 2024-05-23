@@ -91,13 +91,13 @@ input:focus, select:focus {
 /* Estilos para el contenedor principal */
 #main-container {
     width: 340px;
-    margin: 100px auto;
+    margin: 10px auto; /* Adjusted from 100px to 10px */
     height: 760px;
     background-color: #fff;
     padding: 50px;
     border-radius: 5px;
     text-align: center;
-    font-family: "Releway", sans-serif;
+    font-family: "Raleway", sans-serif;
     color: #8DCB9E;
     font-size: 25px; 
 }
@@ -120,10 +120,11 @@ input:focus, select:focus {
     margin-bottom: 10px;
     font-weight: 600;
     font-size: 3.2rem;
+    margin-top: -40px;
 }
 #page #view {
     position: absolute;
-    top: 300px;
+    top: 200px; /* Adjusted from 300px to 200px */
     bottom: 0;
     left: 0;
     right: 0;
@@ -143,7 +144,7 @@ input:focus, select:focus {
     justify-content: center;
     gap: 100px;
     position: absolute;
-    bottom: 20px;
+    bottom: -20px;
     left: 50%;
     transform: translateX(-50%);
 }

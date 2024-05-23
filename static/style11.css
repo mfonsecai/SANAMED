@@ -125,7 +125,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 400px;
-    height: 820px;
+    height: 790px;
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
@@ -137,13 +137,13 @@ body {
   .container-1 {
     display: flex;
     justify-content: space-around;
-    padding: 10px 0; /* Espaciado vertical opcional */
+    padding: 55px 0; /* Espaciado vertical opcional */
   }
   
   .container-1 a {
     flex: 1;
     text-align: center;
-    margin-top: 80px;
+    margin-top: 60px;
   }
   
   
