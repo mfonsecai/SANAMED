@@ -127,8 +127,7 @@ def register():
 
         # Validar la contraseña
         if not validate_password(contrasena):
-            flash("La contraseña debe tener al menos 8 caracteres, una mayúscula y un carácter especial.", "error")
-            return render_template('register.html')
+            return render_template('register.html', error="La contraseña debe tener al menos 8 caracteres, una mayúscula y un carácter especial.")
 
         # Verificar si el correo electrónico ya está registrado
         cur = mysql.connection.cursor()
@@ -137,8 +136,7 @@ def register():
         cur.close()
 
         if existing_user:
-            flash("El correo electrónico ya está registrado. Por favor, utiliza otro correo electrónico", "error")
-            return render_template('register.html')
+            return render_template('register.html', error="El correo electrónico ya está registrado. Por favor, utiliza otro correo electrónico")
 
         # Insertar el nuevo usuario en la base de datos
         cur = mysql.connection.cursor()
@@ -147,15 +145,14 @@ def register():
                 "INSERT INTO Usuarios (nombre, tipo_documento, numero_documento, celular, correo, contrasena) VALUES (%s, %s, %s, %s, %s, %s)",
                 (nombre, tipo_documento, numero_documento, celular, correo, contrasena))
             mysql.connection.commit()
-            flash("Registro exitoso. Inicia sesión con tus credenciales.", "success")
-            return redirect(url_for('register'))
         except Exception as e:
             mysql.connection.rollback()
-            error = "El número de documento ya se encuentra registrado"
-            flash(error, "error")
+            error = "El numero de documento ya se encuentra registrado"
             return render_template('register.html', error=error)
         finally:
             cur.close()
+
+        return render_template('index.html')
 
     return render_template('register.html')
 
@@ -252,8 +249,175 @@ def agendar_cita():
     else:
         return redirect(url_for('index'))
 
+<<<<<<< HEAD
 @app.route('/consultar_citas', methods=["GET"])
 def consultar_citas():
+=======
+    return render_template('agendar_cita.html', profesionales=obtener_profesionales_disponibles())
+@app.route('/calendario')
+def mostrar_calendario():
+    # Aquí debes implementar la lógica para mostrar el calendario
+    return render_template('calendario.html')
+
+def obtener_emociones_por_fecha(fecha):
+    cur = mysql.connection.cursor()
+    query = "SELECT emocion, HOUR(fecha_emocion), MINUTE(fecha_emocion) FROM Emociones WHERE DATE(fecha_emocion) = %s"
+    cur.execute(query, (fecha,))
+    emociones = []
+    horas = []
+    for row in cur.fetchall():
+        emociones.append(row[0])
+        hora = str(row[1]).zfill(2)
+        minuto = str(row[2]).zfill(2)
+        hora_formateada = f"{hora}:{minuto}"
+        horas.append(hora_formateada)
+    cur.close()
+    return emociones, horas
+def obtener_especialidad_profesional(id_profesional):
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT especialidad FROM Profesionales WHERE id_profesional = %s", (id_profesional,))
+    especialidad_profesional = cur.fetchone()[0]
+    cur.close()
+    return especialidad_profesional
+
+def obtener_consultas_por_fecha(fecha):
+    cur = mysql.connection.cursor()
+    query = "SELECT id_usuario, id_profesional, fecha_consulta, hora_consulta, motivo FROM Consultas WHERE DATE(fecha_consulta) = %s"
+    cur.execute(query, (fecha,))
+    consultas = cur.fetchall()
+    cur.close()
+    return consultas
+
+def obtener_nombre_profesional(id_profesional):
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT nombre FROM Profesionales WHERE id_profesional = %s", (id_profesional,))
+    nombre_profesional = cur.fetchone()[0]
+    cur.close()
+    return nombre_profesional
+@app.route('/seleccionar_dia', methods=['POST'])
+def seleccionar_dia():
+    if request.method == 'POST':
+        fecha_seleccionada = request.form['fecha']
+        emociones, horas = obtener_emociones_por_fecha(fecha_seleccionada)
+        if not emociones:
+            mensaje = "No hay emociones registradas para este día."
+            return render_template('calendario.html', mensaje=mensaje)
+        return render_template('emociones.html', fecha_seleccionada=fecha_seleccionada, emociones_horas=zip(emociones, horas))
+
+@app.route('/consultas_dia', methods=["GET", 'POST'])
+def consultas_dia():
+    if request.method == 'POST':
+        fecha_seleccionada = request.form['fecha']
+        consultas = obtener_consultas_por_fecha(fecha_seleccionada)
+        if not consultas:
+            mensaje = "No hay citas registradas para este día."
+            return render_template('calendario.html', mensaje=mensaje)
+        return render_template('consultas.html', fecha_seleccionada=fecha_seleccionada, consultas=consultas, obtener_nombre_profesional=obtener_nombre_profesional, obtener_especialidad_profesional=obtener_especialidad_profesional)
+@app.route('/profesionales')
+def listar_profesionales():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT id_profesional, nombre, especialidad FROM Profesionales")
+    profesionales = cur.fetchall()
+    cur.close()
+    return render_template('lista_profesionales.html', profesionales=profesionales)
+
+@app.route('/agregar_profesional', methods=["GET", "POST"])
+def agregar_profesional():
+    if request.method == "POST":
+        nombre = request.form['nombre']
+        especialidad = request.form['especialidad']
+        correo = request.form['correo']
+        contrasena = request.form['contrasena']
+
+        # Validación de la contraseña
+        if not validate_password(contrasena):
+            error = "La contraseña debe tener al menos 8 caracteres, incluyendo letras, números y caracteres especiales."
+            return render_template('agregar_profesional.html', error=error)
+
+        cur = mysql.connection.cursor()
+        try:
+            cur.execute("INSERT INTO Profesionales (nombre, especialidad, correo, contrasena) VALUES (%s, %s, %s, %s)",
+                        (nombre, especialidad, correo, contrasena))
+            mysql.connection.commit()
+        except Exception as e:
+            mysql.connection.rollback()
+            error = "Error al agregar profesional: " + str(e)
+            return render_template('agregar_profesional.html', error=error)
+        finally:
+            cur.close()
+        return redirect(url_for('listar_profesionales'))
+    return render_template('agregar_profesional.html')
+
+@app.route('/eliminar_profesional/<int:id>', methods=["POST"])
+def eliminar_profesional(id):
+    cur = mysql.connection.cursor()
+    try:
+        cur.execute("DELETE FROM Profesionales WHERE id_profesional=%s", (id,))
+        mysql.connection.commit()
+    except Exception as e:
+        mysql.connection.rollback()
+        error = "Error al eliminar profesional: " + str(e)
+        flash(error)
+    finally:
+        cur.close()
+    return redirect(url_for('listar_profesionales'))
+@app.route('/usuarios')
+def listar_usuarios():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT id_usuario, numero_documento, correo FROM Usuarios")
+    usuarios = cur.fetchall()  # Cambio de nombre de la variable para reflejar que son usuarios, no profesionales
+    cur.close()
+    return render_template('lista_usuarios.html', usuarios=usuarios)  # Cambio de la plantilla a lista_usuarios.html
+
+@app.route('/eliminar_usuario/<int:id>', methods=["POST"])
+def eliminar_usuario(id):
+    cur = mysql.connection.cursor()
+    try:
+        cur.execute("DELETE FROM Usuarios WHERE id_usuario=%s", (id,))
+        mysql.connection.commit()
+    except Exception as e:
+        mysql.connection.rollback()
+        error = "Error al eliminar usuario: " + str(e)
+        flash(error)
+    finally:
+        cur.close()
+    return redirect(url_for('listar_usuarios'))
+@app.route('/citas_agendadas')
+def listar_citas():
+    cur = mysql.connection.cursor()
+    
+    query = """
+    SELECT 
+        u.numero_documento, 
+        p.nombre AS nombre_profesional, 
+        c.fecha_consulta, 
+        c.hora_consulta, 
+        c.motivo,
+        c.id_consulta
+    FROM 
+        Consultas c
+    JOIN 
+        Usuarios u ON c.id_usuario = u.id_usuario
+    LEFT JOIN 
+        Profesionales p ON c.id_profesional = p.id_profesional;
+    """
+    
+    cur.execute(query)
+    citas = cur.fetchall()
+    cur.close()
+    
+    return render_template('lista_consultas.html', citas=citas)
+
+@app.route('/eliminar_cita/<int:id>', methods=['POST'])
+def eliminar_cita(id):
+    cur = mysql.connection.cursor()
+    cur.execute("DELETE FROM Consultas WHERE id_consulta = %s", (id,))
+    mysql.connection.commit()
+    cur.close()
+    return redirect(url_for('listar_citas'))
+@app.route('/pacientes')
+def pacientes():
+>>>>>>> parent of 8d26f88 (aaa)
     if 'logged_in' in session and session['logged_in']:
         id_usuario = session['id_usuario']
         cur = mysql.connection.cursor()
@@ -261,7 +425,92 @@ def consultar_citas():
                     "FROM Consultas c JOIN Profesionales p ON c.id_profesional = p.id_profesional WHERE c.id_usuario = %s", (id_usuario,))
         citas = cur.fetchall()
         cur.close()
+<<<<<<< HEAD
         return render_template('consultar_citas.html', citas=citas)
+=======
+        
+        return render_template('citas_asignadas.html', citas=citas)
+    else:
+        return redirect(url_for('index'))
+class Consulta:
+    def __init__(self, id_consulta, numero_documento, fecha_consulta, hora_consulta, motivo, diagnostico, tratamiento):
+        self.id_consulta = id_consulta
+        self.numero_documento = numero_documento
+        self.fecha_consulta = fecha_consulta
+        self.hora_consulta = hora_consulta
+        self.motivo = motivo
+        self.diagnostico = diagnostico
+        self.tratamiento = tratamiento
+@app.route('/diagnosticos_tratamientos')
+def diagnosticos_tratamientos():
+    if 'logged_in' in session and session['logged_in']:
+        id_profesional = obtener_id_usuario_actual()  # Obtener el ID del profesional logueado
+
+        cur = mysql.connection.cursor()
+        cur.execute("""
+    SELECT DISTINCT c.id_consulta, u.numero_documento, c.fecha_consulta, c.hora_consulta, c.motivo, c.diagnostico, c.tratamiento 
+    FROM Consultas c
+    JOIN Usuarios u ON c.id_usuario = u.id_usuario
+    JOIN Profesionales_Usuarios pu ON c.id_profesional = pu.id_profesional
+    WHERE c.fecha_consulta < %s AND pu.id_profesional = %s
+""", (datetime.now(), id_profesional))
+
+        consultas = cur.fetchall()
+        cur.close()
+
+        consultas_obj = [Consulta(*consulta) for consulta in consultas]
+
+        return render_template('diagnosticos_tratamientos.html', consultas=consultas_obj)
+    else:
+        return redirect(url_for('index'))
+@app.route('/editar_diagnostico_tratamiento/<int:id_consulta>', methods=['POST'])
+def editar_diagnostico_tratamiento(id_consulta):
+    diagnostico = request.form['diagnostico']
+    tratamiento = request.form['tratamiento']
+    
+    cur = mysql.connection.cursor()
+    cur.execute("""
+        UPDATE Consultas
+        SET diagnostico = %s, tratamiento = %s
+        WHERE id_consulta = %s
+    """, (diagnostico, tratamiento, id_consulta))
+    mysql.connection.commit()
+    cur.close()
+    
+    flash('El diagnóstico y tratamiento se han actualizado correctamente.')
+    return redirect(url_for('diagnosticos_tratamientos'))
+
+@app.route('/configuracion')
+def configuracion():
+    return render_template('configuracion.html')
+@app.route('/editar_perfil', methods=['GET', 'POST'])
+def editar_perfil():
+    if 'logged_in' in session and session['logged_in']:
+        id_usuario = obtener_id_usuario_actual()
+        cur = mysql.connection.cursor()
+
+        if request.method == 'POST':
+            nombre = request.form['nombre']
+            numero_documento = request.form['numero_documento']
+            celular = request.form['celular']
+            correo = request.form['correo']
+
+            cur.execute("""
+                UPDATE Usuarios 
+                SET nombre = %s, numero_documento = %s, celular = %s, correo = %s 
+                WHERE id_usuario = %s
+            """, (nombre, numero_documento, celular, correo, id_usuario))
+            mysql.connection.commit()
+            cur.close()
+            
+            flash('Perfil guardado con éxito')  # Añade el mensaje flash
+            return redirect(url_for('editar_perfil'))
+
+        cur.execute("SELECT nombre, numero_documento, celular, correo FROM Usuarios WHERE id_usuario = %s", (id_usuario,))
+        usuario = cur.fetchone()
+        cur.close()
+        return render_template('editar_perfil.html', usuario=usuario)
+>>>>>>> parent of 8d26f88 (aaa)
     else:
         return redirect(url_for('index'))
 

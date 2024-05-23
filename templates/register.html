@@ -13,15 +13,6 @@
     <div class="container">
         <h2 title="Registro en Sanamed">Registro</h2>
         <img src="{{ url_for('static', filename='salud-mental1.jpg') }}" alt="Descripción de la imagen" title="Imagen ilustrativa sobre salud mental">
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                <div class="flash-messages">
-                    {% for message in messages %}
-                        <div class="flash-message">{{ message }}</div>
-                    {% endfor %}
-                </div>
-            {% endif %}
-        {% endwith %}
         {% if error %}
         <div class="alert" title="La contraseña debe tener al menos 8 caracteres, una mayúscula y un carácter especial">
             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>

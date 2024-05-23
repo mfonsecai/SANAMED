@@ -18,11 +18,7 @@ body {
 .container h1 {
     color: #8DCB9E; /* Color del texto dentro del contenedor */
 }
-.flash-message {
-    color: green;
-    font-weight: bold;
-    margin-top: 10px;
-}
+
 .appointment-form {
     max-width: 500px;
     margin: auto;
