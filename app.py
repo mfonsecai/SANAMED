@@ -475,7 +475,7 @@ class Consulta:
         self.diagnostico = diagnostico
         self.tratamiento = tratamiento
 @app.route('/diagnosticos_tratamientos')
-def diagnosticos_tratamientos():
+def diagnosticos_tratamientos():  
     if 'logged_in' in session and session['logged_in']:
         id_profesional = obtener_id_usuario_actual()  # Obtener el ID del profesional logueado
 
