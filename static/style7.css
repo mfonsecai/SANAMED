@@ -1,12 +1,12 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #dad7d7;
+    background-color: #ffffff;
 }
 
 .container {
-    width: 340px;
-    margin: 100px auto;
-    height: 760px;
+    width: 400px;
+    margin: 80px auto;
+    height: 790px;
     background-color: #fff;
     padding: 50px;
     border-radius: 5px;
@@ -79,7 +79,7 @@ body {
     border-radius: 5px;
     font-size: 22px;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 50px;
     transition: background-color 0.3s ease;
 }
 
@@ -176,3 +176,13 @@ body {
         width: 100%;
     }
 }
+
+@media (max-width: 480px) {
+    body {
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden; /* Previene el desplazamiento */
+    } }
+
+  

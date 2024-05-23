@@ -1,18 +1,24 @@
 /* Cambia la fuente de todo el documento a Raleway */
 body {
     font-family: 'Raleway', sans-serif;
-    background-color: #dad7d7;
+    background-color: #fff;
+    margin: 0; /* Asegura que no haya margen en el body */
+    height: 100vh; /* Ajusta la altura del body al 100% de la pantalla */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Previene el desplazamiento */
 }
 
 .settings-v-1 {
     width: 400px;
-    margin: 100px auto;
     height: 820px;
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    font-family: "Releway", sans-serif;
+    position: relative;
+    margin-left: 40px; /* Añade un margen izquierdo para mover el contenedor a la derecha */
 }
 
 .frame-6 {
@@ -97,19 +103,18 @@ body {
 
 .container-1 {
     display: flex;
-    justify-content: center;
-    gap: 100px;
+    justify-content: space-between; /* Distribuye los elementos */
     position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 40px; /* Baja los botones */
+    width: 100%; /* Asegura que ocupe todo el ancho del contenedor */
+    padding: 0 20px; /* Añade espacio a los lados */
+    box-sizing: border-box;
 }
 
 .config, .casa, .download-20 {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -240px;
 }
 
 .config img, .casa img, .download-20 img {
@@ -123,14 +128,23 @@ body {
     transform: scale(1.1);
 }
 
-.container-1 a img {
-    margin-top: 160px; /* Ajusta este valor según lo necesites */
-}
-
-
 .imagen14 img {
     width: 300px;
     height: auto;
     margin-left: 60px;
+}
 
+@media (max-width: 480px) {
+    .settings-v-1 {
+        margin-top: 0; /* Remueve el margen superior para centrar en la pantalla */
+        width: 90%; /* Ajusta el ancho del contenedor */
+        height: 95vh; /* Ajusta la altura del contenedor para ocupar la mayoría de la pantalla */
+        margin-left: 10px; /* Ajusta el margen izquierdo para dispositivos móviles */
+    }
+
+    .container-1 {
+        bottom: 20px; /* Ajusta la posición de los botones en dispositivos móviles */
+        justify-content: space-around; /* Distribuye los botones equitativamente */
+        padding: 0; /* Remueve el padding extra */
+    }
 }

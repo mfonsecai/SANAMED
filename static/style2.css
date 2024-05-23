@@ -1,6 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #dad7d7;
+    background-color: #ffffff;
 }
 
 
@@ -578,7 +578,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 400px;
-    height: 820px;
+    height: 790px;
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
@@ -596,7 +596,7 @@ body {
 .container-1 a {
     flex: 1;
     text-align: center;
-    margin-top: 80px;
+    margin-top: 165px;
 }
 
 
