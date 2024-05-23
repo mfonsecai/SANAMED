@@ -12,17 +12,18 @@
 <body>
     <div class="container">
         <h1>Diagnósticos y Tratamientos</h1>
-        <div class="appointment-form">
-
-            {% with messages = get_flashed_messages() %}
+        {% with messages = get_flashed_messages() %}
                 {% if messages %}
-                    <ul>
+                    <div class="flash-messages">
                         {% for message in messages %}
-                            <li>{{ message }}</li>
+                            <div class="flash-message">{{ message }}</div>
                         {% endfor %}
-                    </ul>
+                    </div>
                 {% endif %}
             {% endwith %}
+        <div class="appointment-form">
+
+            
 
             <table border="1">
                 <thead>

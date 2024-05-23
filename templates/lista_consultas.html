@@ -6,11 +6,36 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style16.css') }}">
     <title>Lista de Citas Agendadas</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='saludmental1.ico ') }}">
-
+    <style>
+        .confirmation-dialog {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+        }
+        .flash-message {
+            color: green;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h1>Lista de Citas Agendadas</h1>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         <div class="appointment-form">
             <table>
                 <tr>
@@ -29,13 +54,14 @@
                     <td>{{ cita[3] }}</td>
                     <td>{{ cita[4] }}</td>
                     <td>
-                        <form action="{{ url_for('eliminar_cita', id=cita[5]) }}" method="post" onsubmit="return confirm('¿Está seguro de que desea eliminar esta cita?');">
-                            <button type="submit">Eliminar</button>
+                        <form id="eliminarForm{{ cita[5] }}" action="{{ url_for('eliminar_cita', id=cita[5]) }}" method="post">
+                            <button type="button" onclick="showConfirmationDialog('{{ cita[5] }}')">Eliminar</button>
                         </form>
                     </td>
                 </tr>
                 {% endfor %}
             </table>
+        </div>
     </div>
     <div class="container-1">
         <div class="config">
@@ -48,5 +74,33 @@
             <a href="{{ url_for('index') }}" title="Cerrar Sesión"><img src="static/iconmonstr-log-out-17-240.png" alt="Cerrar Sesión"></a>
         </div>
     </div>
+
+    <div id="confirmationDialog" class="confirmation-dialog">
+        <p>¿Está seguro de que desea eliminar esta cita?</p>
+        <button onclick="cancelDelete()" class="form-submit">Cancelar</button>
+        <button onclick="confirmDelete()" class="form-submit">Aceptar</button>
+    </div>
+
+
+    <script>
+        var appointmentIdToDelete;
+
+        function showConfirmationDialog(appointmentId) {
+            appointmentIdToDelete = appointmentId;
+            document.getElementById('confirmationDialog').style.display = 'block';
+        }
+
+        function confirmDelete() {
+            document.getElementById('confirmationDialog').style.display = 'none';
+            // Obtener el ID del formulario a enviar
+            var formId = 'eliminarForm' + appointmentIdToDelete;
+            // Enviar el formulario
+            document.getElementById(formId).submit();
+        }
+
+        function cancelDelete() {
+            document.getElementById('confirmationDialog').style.display = 'none';
+        }
+    </script>
 </body>
 </html>

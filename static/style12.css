@@ -39,7 +39,7 @@ body {
     margin: 2px 0;
     display: flex;
     padding: 30px 30px;
-    width: 250px;
+    width: 300px;
     height: fit-content;
     box-sizing: border-box;
     align-items: center;
@@ -95,7 +95,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 30px;
+   
 }
 
 .config img, .casa img, .download-20 img {
