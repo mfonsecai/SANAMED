@@ -516,6 +516,35 @@ def editar_diagnostico_tratamiento(id_consulta):
 @app.route('/configuracion')
 def configuracion():
     return render_template('configuracion.html')
+@app.route('/editar_perfil', methods=['GET', 'POST'])
+def editar_perfil():
+    if 'logged_in' in session and session['logged_in']:
+        id_usuario = obtener_id_usuario_actual()
+        cur = mysql.connection.cursor()
+
+        if request.method == 'POST':
+            nombre = request.form['nombre']
+            numero_documento = request.form['numero_documento']
+            celular = request.form['celular']
+            correo = request.form['correo']
+
+            cur.execute("""
+                UPDATE Usuarios 
+                SET nombre = %s, numero_documento = %s, celular = %s, correo = %s 
+                WHERE id_usuario = %s
+            """, (nombre, numero_documento, celular, correo, id_usuario))
+            mysql.connection.commit()
+            cur.close()
+            
+            flash('Perfil guardado con éxito')  # Añade el mensaje flash
+            return redirect(url_for('editar_perfil'))
+
+        cur.execute("SELECT nombre, numero_documento, celular, correo FROM Usuarios WHERE id_usuario = %s", (id_usuario,))
+        usuario = cur.fetchone()
+        cur.close()
+        return render_template('editar_perfil.html', usuario=usuario)
+    else:
+        return redirect(url_for('index'))
 
 @app.route('/sobre_nosotros')
 def sobre_nosotros():
