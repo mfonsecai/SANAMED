@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='saludmental1.ico ') }}">
-
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="login-container">
-        <h1 title="Bienvenido a SANAMED">Bienvenido a SANAMEDE</h1>
+        <h1 title="Bienvenido a SANAMED">Bienvenido a SANAMED</h1>
         <h2 title="Inicio de Sesión">INICIO DE SESIÓN</h2>
 
         <img src="{{ url_for('static', filename='salud-mental1.jpg') }}" alt="Descripción de la imagen" title="Imagen ilustrativa sobre salud mental">
@@ -31,7 +30,6 @@
                     <option value="profesional">Profesional</option>
                     <option value="admin">Administrador</option>
                 </select>
-                
             </div>
             <input type="text" class="username" name="correo" placeholder="Correo Electrónico" required title="Ingrese su dirección de correo electrónico">
             <input type="password" class="password" name="contrasena" placeholder="Contraseña" required title="Ingrese su contraseña">
