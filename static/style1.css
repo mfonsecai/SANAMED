@@ -2,34 +2,27 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #dad7d7;
+    background-color: #ffffff;
     margin: 0;
     padding: 0;
 }
 
 .container {
-    width: 350px;
-    height: 760px;
-    margin: 100px auto;
+    max-width: 450px; /* Ajuste para pantallas más grandes */
+    margin: 80px auto; /* Centrando contenedor */
+    padding: 40px;
     background-color: #fff;
-    padding: 50px;
-    border-radius: 5px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Añadir sombra */
     text-align: center;
-    font-family: 'Raleway', sans-serif;
     color: #8DCB9E;
-    font-size: 18px;
 }
-.flash-message {
-    color: green;
-    font-weight: bold;
-    margin-top: 10px;
-}
+
 h2 {
     text-align: center;
-    font-family: 'Raleway', sans-serif;
     color: #8DCB9E;
-    text-shadow: 1px 1px 0 #000;
-    font-size: 40px;
+    font-size: 46px;
+    margin-bottom: 20px;
 }
 
 .form-group {
@@ -42,44 +35,36 @@ input[type="email"],
 input[type="password"],
 select {
     display: block;
-    margin-top: 12px;
     width: 100%;
-    margin-bottom: 10px;
-    padding: 10px;
+    padding: 12px;
+    margin-bottom: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    color: #000000;
+    color: #000;
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-}
-
-select {
-    color: #000000;
-    padding: 10px;
+    font-size: 16px;
 }
 
 select option[disabled] {
     color: #000000;
 }
 
-input[type="text"]::placeholder,
-input[type="email"]::placeholder,
-input[type="password"]::placeholder,
+input::placeholder,
 select::placeholder {
-    color: #000000;
+    color: #000;
 }
 
 .btn {
     display: block;
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     background-color: #8DCB9E;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 20px;
-    margin-top: 30px;
+    font-size: 18px;
+    margin-top: 20px;
 }
 
 .btn:hover {
@@ -87,9 +72,8 @@ select::placeholder {
 }
 
 .register-link {
-    margin-top: 10px;
+    margin-top: 20px;
     color: #8DCB9E;
-    font-size: 20px;
 }
 
 .register-link a {
@@ -102,19 +86,15 @@ select::placeholder {
     background-color: #8DCB9E;
     color: white;
     padding: 13px;
-    border: 1px solid #8DCB9E;
     border-radius: 4px;
-    max-width: 95%;
-    width: 400px;
     position: relative;
-    margin: 10px auto;
-    font-size: 17px;
+    margin: 20px 0;
 }
 
 .closebtn {
     color: white;
     float: right;
-    font-size: 28px;
+    font-size: 25px;
     font-weight: bold;
     cursor: pointer;
 }
@@ -123,9 +103,10 @@ select::placeholder {
     color: black;
 }
 
-@media (max-width: 480px) {
-    .alert {
-        width: 90%;
-        max-width: 90%;
+/* Ajuste para pantallas grandes */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 500px;
+        padding: 50px;
     }
 }

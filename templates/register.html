@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='saludmental1.ico ') }}">
-
     <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
-    
 </head>
 <body>
     <div class="container">
         <h2 title="Registro en Sanamed">Registro</h2>
         <img src="{{ url_for('static', filename='salud-mental1.jpg') }}" alt="Descripción de la imagen" title="Imagen ilustrativa sobre salud mental">
+
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 <div class="flash-messages">
@@ -22,12 +21,14 @@
                 </div>
             {% endif %}
         {% endwith %}
+
         {% if error %}
         <div class="alert" title="La contraseña debe tener al menos 8 caracteres, una mayúscula y un carácter especial">
             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
             {{ error }}
         </div>
         {% endif %}
+
         <form action="/signup" method="POST">
             <div class="form-group">
                 <input type="text" id="nombre" name="nombre" placeholder="Nombre completo" required title="Nombre completo">
@@ -54,6 +55,7 @@
             </div>
             <button type="submit" class="btn" title="Registrarse">Registrarse</button>
         </form>
+
         <div class="register-link" title="¿Ya tienes una cuenta?">
             ¿Ya tienes una cuenta? <a href="{{ url_for('index') }}">Iniciar sesión</a>
         </div>
