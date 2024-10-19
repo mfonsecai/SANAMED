@@ -91,12 +91,7 @@ body {
     margin-top: -20px;
 }
 
-.config, .casa, .download-20 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-   
-}
+
 
 .config img, .casa img, .download-20 img {
     width: 45px;
